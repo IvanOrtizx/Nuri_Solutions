@@ -30,10 +30,24 @@
 - GitHub Pages: subir la carpeta a un repo, activar Pages, y en Settings > Pages poner el dominio personalizado (crea el archivo `CNAME`).
 - DNS en Cloudflare: registros A a las IP de GitHub Pages (185.199.108.153, .109, .110, .111) y CNAME `www` → `ivanortizx.github.io`, en modo "DNS only" (nube gris).
 
+## Onboarding (`/onboarding/`)
+Página privada para clientes que ya firmaron y pagaron (etapa `Payment received` o posterior en el Tracker).
+
+**Cómo entra el cliente**
+- Escribe su correo y recibe un **enlace privado** que dura 30 días. No necesita contraseña.
+- O Nuri, desde la hoja, selecciona la fila del cliente en Tracker y usa **Nuri Solutions > Send onboarding link to selected client**. Si el cliente aún no está en `Payment received`, el script pregunta si quiere marcarlo así.
+- Opcional: botón "Continuar con Google". Para activarlo se crea un ID de cliente OAuth (tipo Web) en Google Cloud, con los orígenes autorizados `https://camott.com` y `https://www.nurisolutions.si`. El ID se pega en `CONFIG.GOOGLE_CLIENT_ID` (Code.gs) y en `ONB_CONFIG.googleClientId` (onboarding/index.html).
+
+**Qué guarda**
+- Las respuestas se guardan solas (en el navegador y en la pestaña **Onboarding**), así que el cliente puede seguir otro día o desde otro dispositivo.
+- Los archivos se suben uno por uno, máximo 20 MB cada uno, a `Carpeta del cliente/Onboarding/<categoría>`. Para videos pesados el cliente puede pegar enlaces.
+- Al enviar se genera el PDF y se envía a Nuri y al cliente, y el Tracker pasa a `Onboarding complete`. El cliente puede volver y actualizar sus respuestas.
+
+**Después de cambiar Code.gs**: ejecutar `setup()` de nuevo y publicar una **nueva versión** de la implementación existente para que la URL `/exec` no cambie.
+
 ## Pendiente / próximas fases
 - Fotos de Nuri (sección Founder: reemplazar la "N") y portafolio real (sección Our Work).
 - Contrato con firma en línea + PDF a ambos.
 - Pago con Stripe (tarjeta + ACH) y webhook para marcar `Payment received`.
-- Onboarding con acceso por Google o enlace mágico.
 - Panel privado de Nuri.
 - Antes de publicar: textos legales (política de privacidad) para la casilla de marketing, a cargo de Nuri.

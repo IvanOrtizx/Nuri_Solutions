@@ -1,0 +1,632 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Client Onboarding | Nuri Solutions</title>
+<meta name="theme-color" content="#0E0E11">
+<link rel="icon" type="image/png" href="../assets/favicon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #0E0E11; --ink2: #18181D; --ink3: #24242B;
+    --paper: #F7F5F1; --card: #FFFFFF; --line: #E6E1D9; --line-d: rgba(255,255,255,.1);
+    --muted: #6E6A64; --muted-d: rgba(255,255,255,.62);
+    --pink: #FB4698; --pink-deep: #DE2A7C; --pink-soft: #FFE6F1; --ok: #1F8A5B;
+  }
+  * { box-sizing: border-box; }
+  body { margin: 0; font-family: 'Inter', system-ui, -apple-system, sans-serif; background: var(--paper); color: var(--ink); line-height: 1.55; -webkit-font-smoothing: antialiased; }
+  .serif { font-family: 'Instrument Serif', Georgia, serif; font-weight: 400; font-style: italic; }
+  h1, h2, h3 { letter-spacing: -.03em; line-height: 1.08; margin: 0; font-weight: 600; }
+  [hidden] { display: none !important; }
+  .btn { display: inline-flex; align-items: center; justify-content: center; gap: 10px; font: inherit; font-weight: 600; font-size: 15px; border: 0; border-radius: 999px; padding: 14px 22px; cursor: pointer; text-decoration: none; transition: transform .15s, background .2s; }
+  .btn:active { transform: scale(.98); }
+  .btn:disabled { opacity: .6; cursor: wait; }
+  .btn-pink { background: var(--pink); color: #fff; box-shadow: 0 10px 30px -10px rgba(251,70,152,.7); }
+  .btn-pink:hover { background: var(--pink-deep); }
+  .btn-ghost { background: transparent; color: inherit; border: 1px solid currentColor; }
+  .link { background: none; border: 0; font: inherit; color: var(--pink-deep); text-decoration: underline; cursor: pointer; padding: 0; font-weight: 600; }
+
+  /* top bar */
+  .top { background: var(--ink); color: #fff; position: sticky; top: 0; z-index: 20; border-bottom: 1px solid var(--line-d); }
+  .top .in { max-width: 860px; margin: 0 auto; padding: 0 20px; height: 64px; display: flex; align-items: center; justify-content: space-between; gap: 12px; }
+  .brand { display: flex; align-items: center; gap: 10px; font-weight: 600; letter-spacing: -.02em; text-decoration: none; color: #fff; }
+  .brand img { width: 26px; }
+  .brand small { color: var(--muted-d); font-weight: 500; font-size: 13px; margin-left: 4px; }
+  .lang { display: inline-flex; background: rgba(255,255,255,.08); border: 1px solid var(--line-d); border-radius: 999px; padding: 3px; }
+  .lang button { font: inherit; font-size: 12px; font-weight: 600; border: 0; background: none; color: rgba(255,255,255,.65); padding: 6px 11px; border-radius: 999px; cursor: pointer; }
+  .lang button.on { background: #fff; color: var(--ink); }
+  .bar { height: 3px; background: rgba(255,255,255,.08); }
+  .bar i { display: block; height: 100%; width: 0; background: linear-gradient(90deg, var(--pink), var(--pink-deep)); transition: width .3s; }
+
+  /* gate */
+  .gate { min-height: calc(100vh - 64px); display: grid; place-items: center; padding: 40px 20px; background: radial-gradient(800px 500px at 80% 0%, rgba(251,70,152,.18), transparent), var(--ink); color: #fff; }
+  .gate .box { width: 100%; max-width: 440px; text-align: center; }
+  .gate img.mark { width: 64px; margin: 0 auto 24px; display: block; filter: drop-shadow(0 8px 24px rgba(251,70,152,.5)); }
+  .gate h1 { font-size: clamp(32px, 6vw, 44px); }
+  .gate h1 .serif { color: var(--pink); }
+  .gate p { color: var(--muted-d); margin: 14px 0 26px; }
+  .gate input { width: 100%; font: inherit; font-size: 16px; padding: 15px 18px; border-radius: 14px; border: 1px solid rgba(255,255,255,.18); background: rgba(255,255,255,.06); color: #fff; outline: none; margin-bottom: 12px; }
+  .gate input:focus { border-color: var(--pink); box-shadow: 0 0 0 4px rgba(251,70,152,.2); }
+  .gate .btn { width: 100%; }
+  .or { display: flex; align-items: center; gap: 12px; color: rgba(255,255,255,.4); font-size: 13px; margin: 20px 0; }
+  .or::before, .or::after { content: ""; flex: 1; height: 1px; background: rgba(255,255,255,.12); }
+  #gbtn { display: flex; justify-content: center; min-height: 44px; }
+  .gmsg { margin-top: 16px; font-size: 14px; font-weight: 600; color: #FF8CC0; min-height: 22px; }
+  .gnote { margin-top: 26px; font-size: 13px; color: rgba(255,255,255,.45); }
+
+  /* app */
+  .wrap { max-width: 860px; margin: 0 auto; padding: 0 20px; }
+  .hello { padding: 48px 0 28px; }
+  .hello .eb { font-size: 12px; font-weight: 600; letter-spacing: .14em; text-transform: uppercase; color: var(--pink-deep); }
+  .hello h1 { font-size: clamp(32px, 5.5vw, 48px); margin: 14px 0 12px; }
+  .hello h1 .serif { color: var(--pink-deep); }
+  .hello p { color: var(--muted); margin: 0; max-width: 640px; }
+  .status-line { display: flex; flex-wrap: wrap; gap: 10px 18px; margin-top: 18px; font-size: 13px; color: var(--muted); }
+  .status-line b { color: var(--ink); font-weight: 600; }
+  #syncTxt.ok { color: var(--ok); }
+  .card { background: var(--card); border: 1px solid var(--line); border-radius: 24px; padding: 6px 28px 10px; margin-bottom: 18px; }
+  .block { padding: 26px 0 8px; }
+  .bh { display: flex; gap: 14px; align-items: center; margin-bottom: 6px; }
+  .num { width: 34px; height: 34px; border-radius: 11px; display: grid; place-items: center; font-weight: 600; font-size: 15px; flex: none; background: var(--ink); color: #fff; transition: background .2s; }
+  .card.done .num { background: var(--pink); }
+  .bh h2 { font-size: 21px; letter-spacing: -.02em; }
+  .bdesc { color: var(--muted); font-size: 14px; margin: 0 0 18px 48px; }
+  .field { margin-bottom: 20px; }
+  .row2 { display: grid; grid-template-columns: 1fr 1fr; gap: 0 16px; }
+  .row3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0 12px; }
+  label.q { display: block; font-weight: 600; font-size: 14.5px; margin-bottom: 7px; }
+  .hint { display: block; font-size: 13px; color: var(--muted); margin: -3px 0 8px; }
+  input[type=text], input[type=url], textarea {
+    width: 100%; font: inherit; font-size: 16px; color: var(--ink); background: var(--paper); border: 1px solid var(--line); border-radius: 12px; padding: 13px 14px; outline: none; transition: border-color .15s, box-shadow .15s, background .15s; }
+  input:focus, textarea:focus { border-color: var(--ink); background: #fff; box-shadow: 0 0 0 4px rgba(251,70,152,.14); }
+  textarea { min-height: 96px; resize: vertical; }
+  .invalid { border-color: var(--pink-deep) !important; }
+  .chips { display: flex; flex-wrap: wrap; gap: 8px; }
+  .chips label { cursor: pointer; }
+  .chips input { position: absolute; opacity: 0; pointer-events: none; }
+  .chips span { display: inline-block; padding: 10px 15px; border-radius: 999px; border: 1px solid var(--line); background: var(--paper); font-size: 14px; font-weight: 500; transition: all .15s; user-select: none; }
+  .chips input:checked + span { background: var(--ink); color: #fff; border-color: var(--ink); }
+  .chips input:focus-visible + span { box-shadow: 0 0 0 4px rgba(251,70,152,.25); }
+  .color { display: flex; align-items: center; gap: 8px; background: var(--paper); border: 1px solid var(--line); border-radius: 12px; padding: 6px 8px; }
+  .color input[type=color] { width: 40px; height: 36px; border: 0; padding: 0; background: none; cursor: pointer; border-radius: 8px; flex: none; }
+  .color input[type=text] { border: 0; background: transparent; padding: 8px 4px; font-size: 15px; box-shadow: none !important; }
+  .color small { display: block; font-size: 11px; color: var(--muted); font-weight: 600; text-transform: uppercase; letter-spacing: .06em; padding-left: 4px; }
+  .dz { display: block; text-align: center; border: 1.5px dashed #D3CBBE; border-radius: 16px; padding: 22px 14px; font-weight: 600; font-size: 14.5px; color: var(--muted); background: var(--paper); cursor: pointer; transition: all .15s; }
+  .dz:hover, .dz.over { border-color: var(--pink); color: var(--pink-deep); background: var(--pink-soft); }
+  .dz input { display: none; }
+  .dz small { display: block; font-weight: 500; font-size: 12.5px; margin-top: 4px; }
+  .files { display: grid; gap: 6px; margin-top: 10px; }
+  .fi { display: flex; align-items: center; justify-content: space-between; gap: 10px; background: var(--paper); border: 1px solid var(--line); border-radius: 12px; padding: 9px 12px; font-size: 13.5px; font-weight: 500; }
+  .fi span { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  .fi small { color: var(--muted); font-weight: 600; white-space: nowrap; }
+  .fi.up small { color: var(--pink-deep); }
+  .fi.ok small { color: var(--ok); }
+  .fi.bad { border-color: #F2B8CF; } .fi.bad small { color: var(--pink-deep); }
+  .fi button { background: none; border: 0; color: var(--muted); font-size: 18px; line-height: 1; padding: 2px 6px; border-radius: 6px; cursor: pointer; }
+  .note { background: var(--pink-soft); border-radius: 12px; padding: 12px 14px; font-size: 13.5px; margin: 0 0 18px; }
+  .send { background: var(--ink); color: #fff; border-radius: 24px; padding: 30px 28px; margin: 6px 0 60px; }
+  .send h2 { font-size: 22px; }
+  .send p { color: var(--muted-d); font-size: 14.5px; margin: 8px 0 20px; }
+  .send .btns { display: flex; flex-wrap: wrap; gap: 10px; }
+  .send .btn-ghost { color: #fff; border-color: rgba(255,255,255,.25); }
+  .smsg { margin-top: 14px; font-size: 14px; font-weight: 600; color: #FF8CC0; min-height: 20px; }
+  @media (max-width: 640px) { .row2, .row3 { grid-template-columns: 1fr; } .bdesc { margin-left: 0; } .card { padding: 4px 18px 8px; border-radius: 20px; } .send { padding: 26px 20px; } .brand small { display: none; } }
+
+  .overlay { position: fixed; inset: 0; background: rgba(14,14,17,.6); backdrop-filter: blur(6px); display: none; align-items: center; justify-content: center; padding: 20px; z-index: 100; }
+  .overlay.show { display: flex; }
+  .modal { background: var(--card); border-radius: 26px; max-width: 440px; width: 100%; padding: 36px 30px 26px; text-align: center; }
+  .modal .ok { width: 64px; height: 64px; border-radius: 50%; margin: 0 auto 16px; display: grid; place-items: center; background: var(--pink); }
+  .modal .ok svg { width: 28px; height: 28px; stroke: #fff; stroke-width: 2.6; fill: none; stroke-linecap: round; stroke-linejoin: round; }
+  .modal h3 { font-size: 25px; margin-bottom: 8px; }
+  .modal p { color: var(--muted); font-size: 15px; margin: 0 0 22px; }
+  .modal .close { background: none; border: 0; font: inherit; color: var(--muted); font-size: 14px; padding: 10px; cursor: pointer; margin-top: 6px; }
+  .loading { min-height: calc(100vh - 64px); display: grid; place-items: center; color: var(--muted-d); background: var(--ink); font-size: 14px; }
+</style>
+</head>
+<body>
+
+<header class="top">
+  <div class="in">
+    <a class="brand" href="../"><img src="../assets/logo-mark.png" alt=""><span>Nuri Solutions</span><small data-i18n="top.sub">Client onboarding</small></a>
+    <div class="lang" role="group" aria-label="Language"><button type="button" data-lang="en" class="on">EN</button><button type="button" data-lang="es">ES</button></div>
+  </div>
+  <div class="bar"><i id="bar"></i></div>
+</header>
+
+<div class="loading" id="loading" data-i18n="load">Loading your onboarding...</div>
+
+<!-- ============ ACCESS (no session) ============ -->
+<section class="gate" id="gate" hidden>
+  <div class="box">
+    <img class="mark" src="../assets/logo-mark.png" alt="">
+    <h1 data-i18n="gate.h">Welcome to your <span class="serif">onboarding.</span></h1>
+    <p data-i18n="gate.p">This space is private for Nuri Solutions clients. Enter the email you used with us and we'll send you a private link. No password needed.</p>
+    <form id="reqForm" novalidate>
+      <input type="email" id="reqEmail" autocomplete="email" inputmode="email" placeholder="you@email.com" required>
+      <button class="btn btn-pink" type="submit" id="reqBtn"><span data-i18n="gate.btn">Email me my private link</span></button>
+    </form>
+    <div id="gwrap" hidden>
+      <div class="or" data-i18n="gate.or">or</div>
+      <div id="gbtn"></div>
+    </div>
+    <div class="gmsg" id="gmsg" role="status" aria-live="polite"></div>
+    <div class="gnote" data-i18n="gate.note">Onboarding opens once your agreement is signed and your first payment is received.</div>
+  </div>
+</section>
+
+<!-- ============ ONBOARDING FORM ============ -->
+<main id="app" hidden>
+  <div class="wrap">
+    <div class="hello">
+      <span class="eb" data-i18n="app.eb">Client onboarding</span>
+      <h1><span data-i18n="app.hi">Welcome,</span> <span class="serif" id="firstName">friend</span>.</h1>
+      <p data-i18n="app.p">This is how we build your Digital Twin. Share as much as you can: the more we know about your brand, voice and audience, the more your content will sound like you. Everything saves automatically, so you can finish it in several sessions.</p>
+      <div class="status-line"><span><span data-i18n="app.as">Signed in as</span> <b id="whoEmail"></b></span><span id="syncTxt"></span><span id="pctTxt"></span></div>
+    </div>
+
+    <form id="onb" novalidate>
+
+      <section class="card" data-sec>
+        <div class="block">
+          <div class="bh"><div class="num">1</div><h2 data-i18n="s1.h">Your brand</h2></div>
+          <p class="bdesc" data-i18n="s1.d">The basics of who you are and what you stand for.</p>
+          <div class="field"><label class="q" for="brand_name"><span data-i18n="f.brand">Brand / business name</span> <span style="color:var(--pink-deep)">*</span></label><input type="text" id="brand_name" name="brand_name"></div>
+          <div class="field"><label class="q" for="one_liner" data-i18n="f.one">What do you do, in one sentence?</label><span class="hint" data-i18n="f.oneh">Example: I help first-time homebuyers on the Central Coast find their dream home.</span><input type="text" id="one_liner" name="one_liner"></div>
+          <div class="field"><label class="q" for="mission" data-i18n="f.mission">Your mission and values</label><span class="hint" data-i18n="f.missionh">Why you do what you do and what you will never compromise on.</span><textarea id="mission" name="mission"></textarea></div>
+        </div>
+      </section>
+
+      <section class="card" data-sec>
+        <div class="block">
+          <div class="bh"><div class="num">2</div><h2 data-i18n="s2.h">Logo &amp; visual identity</h2></div>
+          <p class="bdesc" data-i18n="s2.d">Upload your logo files and tell us your colors and fonts. If you don't have them yet, no problem: just leave it blank.</p>
+          <div class="field"><label class="q" data-i18n="f.logo">Logo files</label><span class="hint" data-i18n="f.logoh">PNG with transparent background, SVG, PDF or AI. All versions you have.</span>
+            <label class="dz" data-cat="logo"><input type="file" multiple accept="image/*,.svg,.pdf,.ai,.eps,.psd"><span data-i18n="f.drop">Tap to upload or drag files here</span><small class="maxtxt"></small></label><div class="files" data-files="logo"></div></div>
+          <div class="field"><label class="q" data-i18n="f.colors">Brand colors</label>
+            <div class="row3">
+              <div class="color"><input type="color" id="c1p" value="#FB4698"><div><small data-i18n="f.c1">Primary</small><input type="text" id="c1" name="c1" placeholder="#FB4698"></div></div>
+              <div class="color"><input type="color" id="c2p" value="#0E0E11"><div><small data-i18n="f.c2">Secondary</small><input type="text" id="c2" name="c2" placeholder="#0E0E11"></div></div>
+              <div class="color"><input type="color" id="c3p" value="#F7F5F1"><div><small data-i18n="f.c3">Accent</small><input type="text" id="c3" name="c3" placeholder="#F7F5F1"></div></div>
+            </div>
+            <input type="text" id="colors_note" name="colors_note" style="margin-top:10px" data-i18n-ph="f.colorsph" placeholder="Other colors or notes (optional)">
+          </div>
+          <div class="field"><label class="q" for="fonts" data-i18n="f.fonts">Fonts</label><span class="hint" data-i18n="f.fontsh">Names of the fonts you use, if you know them.</span><input type="text" id="fonts" name="fonts"></div>
+          <div class="row2">
+            <div class="field"><label class="q" data-i18n="f.fontfiles">Font files (optional)</label>
+              <label class="dz" data-cat="font_files"><input type="file" multiple accept=".ttf,.otf,.woff,.woff2,.zip"><span data-i18n="f.drop">Tap to upload or drag files here</span></label><div class="files" data-files="font_files"></div></div>
+            <div class="field"><label class="q" data-i18n="f.guide">Brand guide (optional)</label>
+              <label class="dz" data-cat="brand_guide"><input type="file" multiple accept=".pdf,image/*,.zip"><span data-i18n="f.drop">Tap to upload or drag files here</span></label><div class="files" data-files="brand_guide"></div></div>
+          </div>
+        </div>
+      </section>
+
+      <section class="card" data-sec>
+        <div class="block">
+          <div class="bh"><div class="num">3</div><h2 data-i18n="s3.h">Voice &amp; personality</h2></div>
+          <p class="bdesc" data-i18n="s3.d">The heart of your Digital Twin: how you sound and what makes you, you.</p>
+          <div class="field"><label class="q" data-i18n="f.tone">How would you describe your tone of voice?</label><span class="hint" data-i18n="f.toneh">Choose all that apply.</span>
+            <div class="chips" data-name="tone">
+              <label><input type="checkbox" value="Warm"><span data-i18n="t.1">Warm</span></label>
+              <label><input type="checkbox" value="Professional"><span data-i18n="t.2">Professional</span></label>
+              <label><input type="checkbox" value="Bold"><span data-i18n="t.3">Bold</span></label>
+              <label><input type="checkbox" value="Inspiring"><span data-i18n="t.4">Inspiring</span></label>
+              <label><input type="checkbox" value="Educational"><span data-i18n="t.5">Educational</span></label>
+              <label><input type="checkbox" value="Funny"><span data-i18n="t.6">Funny</span></label>
+              <label><input type="checkbox" value="Calm"><span data-i18n="t.7">Calm</span></label>
+              <label><input type="checkbox" value="Direct"><span data-i18n="t.8">Direct</span></label>
+              <label><input type="checkbox" value="Faith-based"><span data-i18n="t.9">Faith-based</span></label>
+              <label><input type="checkbox" value="Luxury"><span data-i18n="t.10">Luxury</span></label>
+            </div>
+          </div>
+          <div class="field"><label class="q" for="voice_desc" data-i18n="f.voice">How do you talk to your audience?</label><span class="hint" data-i18n="f.voiceh">Imagine you're explaining what you do to a friend. How would you say it?</span><textarea id="voice_desc" name="voice_desc"></textarea></div>
+          <div class="field"><label class="q" for="phrases" data-i18n="f.phrases">Words or phrases you always use</label><input type="text" id="phrases" name="phrases"></div>
+          <div class="field"><label class="q" for="avoid" data-i18n="f.avoid">Topics or words we should avoid</label><input type="text" id="avoid" name="avoid"></div>
+          <div class="field"><label class="q" for="inspiration" data-i18n="f.insp">Brands or creators you admire</label><span class="hint" data-i18n="f.insph">Links or @handles, and what you like about them.</span><textarea id="inspiration" name="inspiration" style="min-height:76px"></textarea></div>
+        </div>
+      </section>
+
+      <section class="card" data-sec>
+        <div class="block">
+          <div class="bh"><div class="num">4</div><h2 data-i18n="s4.h">Your audience</h2></div>
+          <p class="bdesc" data-i18n="s4.d">Who you want to reach and help.</p>
+          <div class="field"><label class="q" for="audience" data-i18n="f.aud">Describe your ideal client or follower</label><textarea id="audience" name="audience"></textarea></div>
+          <div class="row2">
+            <div class="field"><label class="q" for="audience_age" data-i18n="f.age">Age range</label><input type="text" id="audience_age" name="audience_age" placeholder="25-45"></div>
+            <div class="field"><label class="q" for="audience_location" data-i18n="f.loc">Location</label><input type="text" id="audience_location" name="audience_location" data-i18n-ph="f.locph" placeholder="City, state, nationwide..."></div>
+          </div>
+          <div class="field"><label class="q" for="audience_pain" data-i18n="f.pain">What problems, fears or desires do they have?</label><textarea id="audience_pain" name="audience_pain"></textarea></div>
+        </div>
+      </section>
+
+      <section class="card" data-sec>
+        <div class="block">
+          <div class="bh"><div class="num">5</div><h2 data-i18n="s5.h">Social media accounts</h2></div>
+          <p class="bdesc" data-i18n="s5.d">Links or @handles of the accounts we'll manage or optimize.</p>
+          <p class="note" data-i18n="s5.note"><b>Please do not write passwords here.</b> We'll send you secure invitations so you can give us access through each platform (Meta Business, TikTok, Google, etc.).</p>
+          <div class="row2">
+            <div class="field"><label class="q" for="instagram">Instagram</label><input type="text" id="instagram" name="instagram" placeholder="@"></div>
+            <div class="field"><label class="q" for="tiktok">TikTok</label><input type="text" id="tiktok" name="tiktok" placeholder="@"></div>
+            <div class="field"><label class="q" for="facebook">Facebook</label><input type="text" id="facebook" name="facebook"></div>
+            <div class="field"><label class="q" for="youtube">YouTube</label><input type="text" id="youtube" name="youtube"></div>
+            <div class="field"><label class="q" for="linkedin">LinkedIn</label><input type="text" id="linkedin" name="linkedin"></div>
+            <div class="field"><label class="q" for="x_twitter">X (Twitter)</label><input type="text" id="x_twitter" name="x_twitter" placeholder="@"></div>
+            <div class="field"><label class="q" for="google_business" data-i18n="f.gbp">Google Business Profile</label><input type="text" id="google_business" name="google_business"></div>
+            <div class="field"><label class="q" for="website" data-i18n="f.web">Website</label><input type="text" id="website" name="website" inputmode="url"></div>
+          </div>
+          <div class="field"><label class="q" for="other_social" data-i18n="f.other">Other accounts</label><input type="text" id="other_social" name="other_social"></div>
+          <div class="field"><label class="q" for="access_notes" data-i18n="f.access">Anything about access we should know?</label><span class="hint" data-i18n="f.accessh">Who manages the accounts today, if you have a Meta Business account, ad accounts, etc.</span><textarea id="access_notes" name="access_notes" style="min-height:76px"></textarea></div>
+        </div>
+      </section>
+
+      <section class="card" data-sec>
+        <div class="block">
+          <div class="bh"><div class="num">6</div><h2 data-i18n="s6.h">Goals</h2></div>
+          <p class="bdesc" data-i18n="s6.d">What success looks like for you.</p>
+          <div class="field"><label class="q" for="goals_90" data-i18n="f.goals">What do you want to achieve in the next 90 days?</label><textarea id="goals_90" name="goals_90"></textarea></div>
+          <div class="field"><label class="q" data-i18n="f.kpis">Which results matter most to you?</label>
+            <div class="chips" data-name="kpis">
+              <label><input type="checkbox" value="Followers"><span data-i18n="k.1">Followers</span></label>
+              <label><input type="checkbox" value="Engagement"><span data-i18n="k.2">Engagement</span></label>
+              <label><input type="checkbox" value="Leads"><span data-i18n="k.3">Leads</span></label>
+              <label><input type="checkbox" value="Sales"><span data-i18n="k.4">Sales</span></label>
+              <label><input type="checkbox" value="Booked calls"><span data-i18n="k.5">Booked calls</span></label>
+              <label><input type="checkbox" value="Brand awareness"><span data-i18n="k.6">Brand awareness</span></label>
+              <label><input type="checkbox" value="Website traffic"><span data-i18n="k.7">Website traffic</span></label>
+              <label><input type="checkbox" value="Community"><span data-i18n="k.8">Community</span></label>
+            </div>
+          </div>
+          <div class="field"><label class="q" data-i18n="f.freq">How often would you like to post?</label>
+            <div class="chips" data-name="frequency" data-single>
+              <label><input type="checkbox" value="Daily"><span data-i18n="q.1">Daily</span></label>
+              <label><input type="checkbox" value="3-5 times a week"><span data-i18n="q.2">3-5 times a week</span></label>
+              <label><input type="checkbox" value="1-2 times a week"><span data-i18n="q.3">1-2 times a week</span></label>
+              <label><input type="checkbox" value="Not sure - recommend me"><span data-i18n="q.4">Not sure, recommend me</span></label>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="card" data-sec>
+        <div class="block">
+          <div class="bh"><div class="num">7</div><h2 data-i18n="s7.h">Products &amp; services</h2></div>
+          <p class="bdesc" data-i18n="s7.d">What you offer, so we can talk about it the right way.</p>
+          <div class="field"><label class="q" for="products" data-i18n="f.products">List your products or services</label><span class="hint" data-i18n="f.productsh">Name, short description and price if you'd like.</span><textarea id="products" name="products" style="min-height:120px"></textarea></div>
+          <div class="field"><label class="q" for="offer_focus" data-i18n="f.offer">Which offer should we promote first?</label><input type="text" id="offer_focus" name="offer_focus"></div>
+          <div class="field"><label class="q" data-i18n="f.pfiles">Price list, menu or catalog (optional)</label>
+            <label class="dz" data-cat="product_files"><input type="file" multiple accept=".pdf,image/*,.doc,.docx,.xls,.xlsx,.csv"><span data-i18n="f.drop">Tap to upload or drag files here</span></label><div class="files" data-files="product_files"></div></div>
+        </div>
+      </section>
+
+      <section class="card" data-sec>
+        <div class="block">
+          <div class="bh"><div class="num">8</div><h2 data-i18n="s8.h">Photos &amp; videos</h2></div>
+          <p class="bdesc" data-i18n="s8.d">Photos of you, your team, your work or your space. Videos you've already recorded are welcome too.</p>
+          <div class="field">
+            <label class="dz" data-cat="media"><input type="file" multiple accept="image/*,video/*"><span data-i18n="f.drop">Tap to upload or drag files here</span><small class="maxtxt"></small></label><div class="files" data-files="media"></div></div>
+          <div class="field"><label class="q" for="media_links" data-i18n="f.mlinks">Links to bigger files</label><span class="hint" data-i18n="f.mlinksh">For large videos, share a Google Drive, Dropbox or WeTransfer link.</span><textarea id="media_links" name="media_links" style="min-height:76px"></textarea></div>
+          <div class="field"><label class="q" for="notes" data-i18n="f.notes">Anything else we should know?</label><textarea id="notes" name="notes"></textarea></div>
+        </div>
+      </section>
+
+      <div class="send">
+        <h2 data-i18n="send.h">Ready to send?</h2>
+        <p data-i18n="send.p">Nuri will receive everything right away. You can come back to this page and update your answers anytime.</p>
+        <div class="btns">
+          <button type="button" class="btn btn-pink" id="submitBtn"><span data-i18n="send.btn">Submit my onboarding</span></button>
+        </div>
+        <div class="smsg" id="smsg" role="status" aria-live="polite"></div>
+      </div>
+    </form>
+  </div>
+</main>
+
+<div class="overlay" id="done" role="dialog" aria-modal="true" aria-labelledby="doneTitle">
+  <div class="modal">
+    <div class="ok"><svg viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></div>
+    <h3 id="doneTitle" data-i18n="done.h">You're all set!</h3>
+    <p data-i18n="done.p">We received your onboarding and files. Nuri will reach out with the next steps. A copy was sent to your email.</p>
+    <a class="btn btn-pink" href="../" data-i18n="done.home">Back to the website</a><br>
+    <button type="button" class="close" id="doneClose" data-i18n="done.close">Keep editing</button>
+  </div>
+</div>
+
+<script>
+/* ============================================================
+   CONFIG — same Apps Script /exec URL as the main page.
+   googleClientId: optional OAuth Web client ID for "Continue with Google".
+   ============================================================ */
+var ONB_CONFIG = {
+  endpoint: 'https://script.google.com/macros/s/AKfycbzRCdci_5xqnKmOW-ojNQElhd-33ffgQkM5d-sG_MF6OQk7jmSDY5QyZHdRnqxd_Fcd/exec',
+  googleClientId: ''
+};
+
+(function () {
+  var ES = {
+    'top.sub': 'Onboarding de clientes', 'load': 'Cargando tu onboarding...',
+    'gate.h': 'Bienvenido a tu <span class="serif">onboarding.</span>',
+    'gate.p': 'Este espacio es privado para clientes de Nuri Solutions. Escribe el correo que usaste con nosotros y te enviaremos un enlace privado. No necesitas contraseña.',
+    'gate.btn': 'Enviarme mi enlace privado', 'gate.or': 'o',
+    'gate.note': 'El onboarding se habilita cuando tu contrato está firmado y recibimos tu primer pago.',
+    'app.eb': 'Onboarding de clientes', 'app.hi': 'Bienvenido,', 'app.as': 'Sesión de',
+    'app.p': 'Así construimos tu Gemelo Digital. Comparte todo lo que puedas: mientras más sepamos de tu marca, tu voz y tu audiencia, más va a sonar a ti tu contenido. Todo se guarda solo, así que puedes terminarlo en varias sesiones.',
+    's1.h': 'Tu marca', 's1.d': 'Lo básico de quién eres y qué defiendes.',
+    'f.brand': 'Nombre de la marca o negocio', 'f.one': '¿Qué haces, en una frase?', 'f.oneh': 'Ejemplo: ayudo a familias de la Costa Central a comprar su primera casa.',
+    'f.mission': 'Tu misión y tus valores', 'f.missionh': 'Por qué haces lo que haces y en qué nunca cederías.',
+    's2.h': 'Logo e identidad visual', 's2.d': 'Sube tu logo y cuéntanos tus colores y tipografías. Si aún no los tienes, no pasa nada: déjalo en blanco.',
+    'f.logo': 'Archivos del logo', 'f.logoh': 'PNG con fondo transparente, SVG, PDF o AI. Todas las versiones que tengas.',
+    'f.drop': 'Toca para subir o arrastra archivos aquí', 'f.colors': 'Colores de la marca', 'f.c1': 'Principal', 'f.c2': 'Secundario', 'f.c3': 'Acento',
+    'f.fonts': 'Tipografías', 'f.fontsh': 'Nombres de las tipografías que usas, si los sabes.', 'f.fontfiles': 'Archivos de tipografía (opcional)', 'f.guide': 'Manual de marca (opcional)',
+    's3.h': 'Voz y personalidad', 's3.d': 'El corazón de tu Gemelo Digital: cómo suenas y qué te hace único.',
+    'f.tone': '¿Cómo describirías tu tono de voz?', 'f.toneh': 'Elige todos los que apliquen.',
+    't.1': 'Cálido', 't.2': 'Profesional', 't.3': 'Audaz', 't.4': 'Inspirador', 't.5': 'Educativo', 't.6': 'Divertido', 't.7': 'Sereno', 't.8': 'Directo', 't.9': 'Basado en la fe', 't.10': 'Lujo',
+    'f.voice': '¿Cómo le hablas a tu audiencia?', 'f.voiceh': 'Imagina que le explicas a un amigo lo que haces. ¿Cómo se lo dirías?',
+    'f.phrases': 'Palabras o frases que siempre usas', 'f.avoid': 'Temas o palabras que debemos evitar', 'f.insp': 'Marcas o creadores que admiras', 'f.insph': 'Enlaces o @usuarios, y qué te gusta de ellos.',
+    's4.h': 'Tu audiencia', 's4.d': 'A quién quieres llegar y ayudar.', 'f.aud': 'Describe a tu cliente o seguidor ideal', 'f.age': 'Rango de edad', 'f.loc': 'Ubicación',
+    'f.pain': '¿Qué problemas, miedos o deseos tienen?',
+    's5.h': 'Redes sociales', 's5.d': 'Enlaces o @usuarios de las cuentas que vamos a manejar u optimizar.',
+    's5.note': '<b>Por favor no escribas contraseñas aquí.</b> Te enviaremos invitaciones seguras para que nos des acceso desde cada plataforma (Meta Business, TikTok, Google, etc.).',
+    'f.gbp': 'Perfil de Negocio en Google', 'f.web': 'Sitio web', 'f.other': 'Otras cuentas', 'f.access': '¿Algo que debamos saber sobre el acceso?', 'f.accessh': 'Quién maneja las cuentas hoy, si tienes Meta Business, cuentas publicitarias, etc.',
+    's6.h': 'Objetivos', 's6.d': 'Cómo se ve el éxito para ti.', 'f.goals': '¿Qué quieres lograr en los próximos 90 días?', 'f.kpis': '¿Qué resultados te importan más?',
+    'k.1': 'Seguidores', 'k.2': 'Interacción', 'k.3': 'Prospectos', 'k.4': 'Ventas', 'k.5': 'Llamadas agendadas', 'k.6': 'Reconocimiento de marca', 'k.7': 'Visitas al sitio web', 'k.8': 'Comunidad',
+    'f.freq': '¿Con qué frecuencia te gustaría publicar?', 'q.1': 'Todos los días', 'q.2': '3 a 5 veces por semana', 'q.3': '1 a 2 veces por semana', 'q.4': 'No sé, recomiéndame',
+    's7.h': 'Productos y servicios', 's7.d': 'Lo que ofreces, para hablar de ello de la forma correcta.', 'f.products': 'Haz una lista de tus productos o servicios', 'f.productsh': 'Nombre, descripción corta y precio si quieres.',
+    'f.offer': '¿Qué oferta deberíamos promocionar primero?', 'f.pfiles': 'Lista de precios, menú o catálogo (opcional)',
+    's8.h': 'Fotos y videos', 's8.d': 'Fotos tuyas, de tu equipo, tu trabajo o tu espacio. También son bienvenidos los videos que ya tengas.',
+    'f.mlinks': 'Enlaces a archivos más grandes', 'f.mlinksh': 'Para videos pesados, comparte un enlace de Google Drive, Dropbox o WeTransfer.', 'f.notes': '¿Algo más que debamos saber?',
+    'send.h': '¿Listo para enviar?', 'send.p': 'Nuri recibirá todo de inmediato. Puedes volver a esta página y actualizar tus respuestas cuando quieras.', 'send.btn': 'Enviar mi onboarding',
+    'done.h': '¡Todo listo!', 'done.p': 'Recibimos tu onboarding y tus archivos. Nuri te contactará con los siguientes pasos. Te enviamos una copia a tu correo.', 'done.home': 'Volver a la página', 'done.close': 'Seguir editando'
+  };
+  var ES_PH = { 'f.colorsph': 'Otros colores o notas (opcional)', 'f.locph': 'Ciudad, estado, todo el país...' };
+  var MSG = {
+    en: { saving: 'Saving...', saved: 'All changes saved', local: 'Saved on this device (will sync)', pct: '% complete', sent: 'If that email belongs to an active client, a private link is on its way. Check your inbox (and spam).', bademail: 'Please enter a valid email.', err: 'Something went wrong. Please try again in a minute.', expired: 'Your link expired or is not valid. Enter your email to get a new one.', notclient: 'We could not find an active client with that Google account. Try the email option.', uploading: 'Uploading...', uploaded: 'Uploaded', toobig: 'Too big (max {mb} MB). Use a link instead.', upfail: 'Upload failed', needbrand: 'Please add your brand name (section 1).', waitup: 'Please wait until your files finish uploading.', submitting: 'Sending...', resubmitted: 'Submitted' },
+    es: { saving: 'Guardando...', saved: 'Todos los cambios guardados', local: 'Guardado en este dispositivo (se sincronizará)', pct: '% completado', sent: 'Si ese correo pertenece a un cliente activo, tu enlace privado va en camino. Revisa tu bandeja de entrada (y spam).', bademail: 'Escribe un correo válido.', err: 'Algo salió mal. Intenta de nuevo en un minuto.', expired: 'Tu enlace venció o no es válido. Escribe tu correo para recibir uno nuevo.', notclient: 'No encontramos un cliente activo con esa cuenta de Google. Prueba con la opción de correo.', uploading: 'Subiendo...', uploaded: 'Subido', toobig: 'Muy pesado (máx. {mb} MB). Usa un enlace.', upfail: 'No se pudo subir', needbrand: 'Escribe el nombre de tu marca (sección 1).', waitup: 'Espera a que terminen de subir tus archivos.', submitting: 'Enviando...', resubmitted: 'Enviado' }
+  };
+  var ENDPOINT = ONB_CONFIG.endpoint;
+  var TKEY = 'nuri-onb-token', DKEY = 'nuri-onb-draft';
+  var lang = /[?&]lang=es/.test(location.search) ? 'es' : 'en';
+  var token = null, files = {}, maxMb = 20, pending = 0, saveTimer = null, dirty = false;
+  var $ = function (id) { return document.getElementById(id); };
+
+  /* ---------- i18n ---------- */
+  var EN = {}, EN_PH = {};
+  document.querySelectorAll('[data-i18n]').forEach(function (el) { var k = el.dataset.i18n; if (!(k in EN)) EN[k] = el.innerHTML; });
+  document.querySelectorAll('[data-i18n-ph]').forEach(function (el) { EN_PH[el.dataset.i18nPh] = el.placeholder; });
+  function setLang(l) {
+    lang = l; document.documentElement.lang = l;
+    document.querySelectorAll('[data-i18n]').forEach(function (el) { var v = (l === 'es' ? ES : EN)[el.dataset.i18n]; if (v != null) el.innerHTML = v; });
+    document.querySelectorAll('[data-i18n-ph]').forEach(function (el) { var v = (l === 'es' ? ES_PH : EN_PH)[el.dataset.i18nPh]; if (v != null) el.placeholder = v; });
+    document.querySelectorAll('.lang button').forEach(function (b) { b.classList.toggle('on', b.dataset.lang === l); });
+    document.querySelectorAll('.maxtxt').forEach(function (s) { s.textContent = (l === 'es' ? 'Máx. ' : 'Max ') + maxMb + ' MB ' + (l === 'es' ? 'por archivo' : 'per file'); });
+    Object.keys(files).forEach(renderFiles);
+    if (lastSync) sync(lastSync);
+    progress();
+  }
+  document.querySelectorAll('.lang button').forEach(function (b) { b.addEventListener('click', function () { setLang(b.dataset.lang); }); });
+
+  /* ---------- API ---------- */
+  function api(action, payload) {
+    payload = payload || {}; payload.action = action; payload.lang = lang;
+    return fetch(ENDPOINT, { method: 'POST', headers: { 'Content-Type': 'text/plain;charset=utf-8' }, body: JSON.stringify(payload) })
+      .then(function (r) { return r.json(); });
+  }
+
+  /* ---------- screens ---------- */
+  function show(which) {
+    $('loading').hidden = which !== 'loading'; $('gate').hidden = which !== 'gate'; $('app').hidden = which !== 'app';
+  }
+  function gateMsg(t) { $('gmsg').textContent = t || ''; }
+
+  /* ---------- access ---------- */
+  $('reqForm').addEventListener('submit', function (e) {
+    e.preventDefault();
+    var email = $('reqEmail').value.trim();
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(email)) { gateMsg(MSG[lang].bademail); return; }
+    $('reqBtn').disabled = true; gateMsg('');
+    api('onb_request', { email: email, page: location.origin + location.pathname })
+      .then(function (r) { if (!r.ok) throw 0; gateMsg(MSG[lang].sent); })
+      .catch(function () { gateMsg(MSG[lang].err); })
+      .then(function () { $('reqBtn').disabled = false; });
+  });
+
+  function setupGoogle() {
+    if (!ONB_CONFIG.googleClientId) return;
+    var s = document.createElement('script'); s.src = 'https://accounts.google.com/gsi/client'; s.async = true;
+    s.onload = function () {
+      google.accounts.id.initialize({ client_id: ONB_CONFIG.googleClientId, callback: function (resp) {
+        gateMsg('');
+        api('onb_google', { credential: resp.credential }).then(function (r) {
+          if (r.ok && r.token) { saveToken(r.token); startSession(); }
+          else gateMsg(r.error === 'not_client' ? MSG[lang].notclient : MSG[lang].err);
+        }).catch(function () { gateMsg(MSG[lang].err); });
+      } });
+      google.accounts.id.renderButton($('gbtn'), { theme: 'filled_black', size: 'large', shape: 'pill', text: 'continue_with', width: 300 });
+      $('gwrap').hidden = false;
+    };
+    document.head.appendChild(s);
+  }
+
+  function saveToken(t) { token = t; try { localStorage.setItem(TKEY, t); } catch (e) {} }
+  function readToken() {
+    var m = location.search.match(/[?&]t=([a-f0-9]{64})/i);
+    if (m) {
+      saveToken(m[1]);
+      var clean = location.pathname + (lang === 'es' ? '?lang=es' : '');
+      try { history.replaceState(null, '', clean); } catch (e) {}
+      return m[1];
+    }
+    try { return localStorage.getItem(TKEY); } catch (e) { return null; }
+  }
+
+  function startSession() {
+    show('loading');
+    api('onb_session', { token: token }).then(function (r) {
+      if (!r.ok) { try { localStorage.removeItem(TKEY); } catch (e) {} token = null; show('gate'); gateMsg(MSG[lang].expired); return; }
+      maxMb = r.maxMb || maxMb;
+      $('firstName').textContent = (r.client.name || '').split(' ')[0] || r.client.brand || '';
+      $('whoEmail').textContent = r.client.email;
+      var local = null; try { local = JSON.parse(localStorage.getItem(DKEY) || 'null'); } catch (e) {}
+      var d = r.draft;
+      if (local && local.email === r.client.email && (!d || (local.t || 0) > (d.t || 0))) d = local.d;
+      if (d) fill(d); else if (!$('brand_name').value) $('brand_name').value = r.client.brand || '';
+      show('app'); setLang(lang); sync('saved');
+    }).catch(function () { show('gate'); gateMsg(MSG[lang].err); });
+  }
+
+  /* ---------- form data ---------- */
+  var form = $('onb');
+  form.querySelectorAll('.chips[data-single]').forEach(function (g) {
+    g.addEventListener('change', function (e) { if (e.target.checked) g.querySelectorAll('input').forEach(function (i) { if (i !== e.target) i.checked = false; }); });
+  });
+  ['c1', 'c2', 'c3'].forEach(function (id) {
+    var p = $(id + 'p'), t = $(id);
+    p.addEventListener('input', function () { t.value = p.value.toUpperCase(); changed(); });
+    t.addEventListener('input', function () { if (/^#[0-9a-f]{6}$/i.test(t.value.trim())) p.value = t.value.trim(); });
+  });
+
+  function collect() {
+    var f = {};
+    form.querySelectorAll('input[name], textarea[name]').forEach(function (el) { f[el.name] = (el.value || '').trim(); });
+    form.querySelectorAll('.chips[data-name]').forEach(function (g) {
+      f[g.dataset.name] = Array.prototype.filter.call(g.querySelectorAll('input'), function (i) { return i.checked; }).map(function (i) { return i.value; }).join(', ');
+    });
+    var cols = [['Primary', f.c1], ['Secondary', f.c2], ['Accent', f.c3]].filter(function (c) { return c[1]; }).map(function (c) { return c[0] + ' ' + c[1]; });
+    if (f.colors_note) cols.push(f.colors_note);
+    f.colors = cols.join(', ');
+    var clean = {}; Object.keys(files).forEach(function (k) { clean[k] = files[k].filter(function (x) { return x.id; }).map(function (x) { return { id: x.id, name: x.name, size: x.size }; }); });
+    return { fields: f, files: clean, t: Date.now() };
+  }
+  function fill(d) {
+    var f = d.fields || {};
+    form.querySelectorAll('input[name], textarea[name]').forEach(function (el) { if (f[el.name] != null) el.value = f[el.name]; });
+    form.querySelectorAll('.chips[data-name]').forEach(function (g) {
+      var vals = String(f[g.dataset.name] || '').split(', ');
+      g.querySelectorAll('input').forEach(function (i) { i.checked = vals.indexOf(i.value) > -1; });
+    });
+    ['c1', 'c2', 'c3'].forEach(function (id) { if (/^#[0-9a-f]{6}$/i.test($(id).value)) $(id + 'p').value = $(id).value; });
+    files = {}; Object.keys(d.files || {}).forEach(function (k) { files[k] = (d.files[k] || []).map(function (x) { return { id: x.id, name: x.name, size: x.size, st: 'ok' }; }); renderFiles(k); });
+  }
+
+  /* ---------- saving ---------- */
+  var lastSync = '';
+  function sync(state) {
+    lastSync = state;
+    var el = $('syncTxt');
+    el.className = state === 'saved' ? 'ok' : '';
+    el.textContent = MSG[lang][state] || '';
+  }
+  function saveLocal() {
+    try { localStorage.setItem(DKEY, JSON.stringify({ email: $('whoEmail').textContent, t: Date.now(), d: collect() })); } catch (e) {}
+  }
+  function saveServer() {
+    if (!token) return;
+    dirty = false; sync('saving');
+    api('onb_save', { token: token, draft: collect() })
+      .then(function (r) { if (r.ok) { if (!dirty) sync('saved'); } else if (r.error === 'expired') { startSession(); } else throw 0; })
+      .catch(function () { dirty = true; sync('local'); });
+  }
+  function changed() {
+    dirty = true; saveLocal(); progress(); sync('saving');
+    clearTimeout(saveTimer); saveTimer = setTimeout(saveServer, 2000);
+  }
+  form.addEventListener('input', function (e) { if (e.target.type !== 'file') { e.target.classList && e.target.classList.remove('invalid'); changed(); } });
+  form.addEventListener('change', function (e) { if (e.target.type === 'checkbox') changed(); });
+  document.addEventListener('visibilitychange', function () { if (document.visibilityState === 'hidden' && dirty) saveServer(); });
+
+  function progress() {
+    var total = 0, filled = 0;
+    form.querySelectorAll('section[data-sec]').forEach(function (sec) {
+      var t = 0, f = 0;
+      sec.querySelectorAll('input[name], textarea[name]').forEach(function (el) { if (/^(c2|c3|colors_note|other_social|x_twitter|linkedin|youtube|facebook)$/.test(el.name)) return; t++; if ((el.value || '').trim()) f++; });
+      sec.querySelectorAll('.chips[data-name]').forEach(function (g) { t++; if (g.querySelector('input:checked')) f++; });
+      sec.querySelectorAll('[data-cat]').forEach(function (dz) { if (dz.dataset.cat === 'font_files' || dz.dataset.cat === 'brand_guide') return; t++; if ((files[dz.dataset.cat] || []).some(function (x) { return x.id; })) f++; });
+      total += t; filled += f;
+      sec.classList.toggle('done', t > 0 && f >= Math.ceil(t * 0.6));
+    });
+    var pct = total ? Math.round(filled / total * 100) : 0;
+    $('bar').style.width = pct + '%'; $('pctTxt').textContent = pct + MSG[lang].pct;
+  }
+
+  /* ---------- files ---------- */
+  function fmt(b) { return b > 1048576 ? (b / 1048576).toFixed(1) + ' MB' : Math.max(1, Math.round(b / 1024)) + ' KB'; }
+  function renderFiles(cat) {
+    var box = document.querySelector('[data-files="' + cat + '"]'); if (!box) return;
+    box.innerHTML = '';
+    (files[cat] || []).forEach(function (x, idx) {
+      var row = document.createElement('div'); row.className = 'fi ' + (x.st || '');
+      var n = document.createElement('span'); n.textContent = x.name;
+      var s = document.createElement('small');
+      s.textContent = x.st === 'up' ? MSG[lang].uploading : x.st === 'big' ? MSG[lang].toobig.replace('{mb}', maxMb) : x.st === 'bad' ? MSG[lang].upfail : (x.size ? fmt(x.size) + ' · ' : '') + MSG[lang].uploaded;
+      row.appendChild(n); row.appendChild(s);
+      if (x.st !== 'up') {
+        var rm = document.createElement('button'); rm.type = 'button'; rm.textContent = '×'; rm.setAttribute('aria-label', 'Remove ' + x.name);
+        rm.addEventListener('click', function () {
+          files[cat].splice(idx, 1); renderFiles(cat); changed();
+          if (x.id) api('onb_delete', { token: token, id: x.id }).catch(function () {});
+        });
+        row.appendChild(rm);
+      }
+      box.appendChild(row);
+    });
+  }
+  function toB64(file) {
+    return new Promise(function (res, rej) { var r = new FileReader(); r.onload = function () { res(String(r.result).split(',')[1]); }; r.onerror = rej; r.readAsDataURL(file); });
+  }
+  var queue = [], busy = false;
+  function addFiles(cat, list) {
+    files[cat] = files[cat] || [];
+    Array.prototype.forEach.call(list, function (file) {
+      var item = { name: file.name, size: file.size, st: file.size > maxMb * 1048576 ? 'big' : 'up' };
+      files[cat].push(item);
+      if (item.st === 'up') { pending++; queue.push({ cat: cat, file: file, item: item }); }
+    });
+    renderFiles(cat); runQueue();
+  }
+  function runQueue() {
+    if (busy || !queue.length) return;
+    busy = true;
+    var job = queue.shift();
+    toB64(job.file).then(function (b64) {
+      return api('onb_upload', { token: token, category: job.cat, name: job.file.name, type: job.file.type, data: b64 });
+    }).then(function (r) {
+      if (!r.ok) throw 0;
+      job.item.id = r.id; job.item.name = r.name; job.item.st = 'ok';
+    }).catch(function () { job.item.st = 'bad'; })
+      .then(function () { pending--; busy = false; renderFiles(job.cat); changed(); runQueue(); });
+  }
+  document.querySelectorAll('.dz').forEach(function (dz) {
+    var inp = dz.querySelector('input'), cat = dz.dataset.cat;
+    inp.addEventListener('change', function () { addFiles(cat, inp.files || []); inp.value = ''; });
+    dz.addEventListener('dragover', function (e) { e.preventDefault(); dz.classList.add('over'); });
+    dz.addEventListener('dragleave', function () { dz.classList.remove('over'); });
+    dz.addEventListener('drop', function (e) { e.preventDefault(); dz.classList.remove('over'); addFiles(cat, e.dataTransfer.files || []); });
+  });
+
+  /* ---------- submit ---------- */
+  $('submitBtn').addEventListener('click', function () {
+    var m = $('smsg');
+    if (pending > 0) { m.textContent = MSG[lang].waitup; return; }
+    if (!$('brand_name').value.trim()) { $('brand_name').classList.add('invalid'); $('brand_name').scrollIntoView({ behavior: 'smooth', block: 'center' }); m.textContent = MSG[lang].needbrand; return; }
+    clearTimeout(saveTimer);
+    $('submitBtn').disabled = true; m.textContent = MSG[lang].submitting;
+    api('onb_submit', { token: token, draft: collect() }).then(function (r) {
+      if (!r.ok) { if (r.error === 'expired') { startSession(); return; } throw 0; }
+      dirty = false; sync('saved'); m.textContent = MSG[lang].resubmitted;
+      $('done').classList.add('show');
+    }).catch(function () { m.textContent = MSG[lang].err; })
+      .then(function () { $('submitBtn').disabled = false; });
+  });
+  $('doneClose').addEventListener('click', function () { $('done').classList.remove('show'); });
+
+  /* ---------- init ---------- */
+  setLang(lang);
+  setupGoogle();
+  token = readToken();
+  if (token) startSession(); else show('gate');
+})();
+</script>
+</body>
+</html>
