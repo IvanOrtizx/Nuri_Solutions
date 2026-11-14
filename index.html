@@ -1,0 +1,1019 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Nuri Solutions | Digital Presence, Personal Brand & Business Operations</title>
+<meta name="description" content="Nuri Solutions builds and manages your digital presence: personal branding, short-form video, social media, paid ads, AI and business automation.">
+<meta property="og:title" content="Nuri Solutions | The Future of Personal Branding Is Here">
+<meta property="og:description" content="We don't just post content. We build and manage your digital presence.">
+<meta property="og:image" content="assets/og-image.jpg">
+<meta property="og:type" content="website">
+<meta name="theme-color" content="#0E0E11">
+<link rel="icon" type="image/png" href="assets/favicon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #0E0E11; --ink2: #18181D; --ink3: #24242B;
+    --paper: #F7F5F1; --card: #FFFFFF; --line: #E6E1D9; --line-d: rgba(255,255,255,.1);
+    --muted: #6E6A64; --muted-d: rgba(255,255,255,.62);
+    --pink: #FB4698; --pink-deep: #DE2A7C; --pink-soft: #FFE6F1;
+    --radius: 20px; --max: 1160px;
+  }
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body { margin: 0; font-family: 'Inter', system-ui, -apple-system, sans-serif; background: var(--paper); color: var(--ink); line-height: 1.55; -webkit-font-smoothing: antialiased; }
+  img { max-width: 100%; display: block; }
+  a { color: inherit; }
+  .wrap { max-width: var(--max); margin: 0 auto; padding: 0 24px; }
+  .serif { font-family: 'Instrument Serif', Georgia, serif; font-weight: 400; font-style: italic; letter-spacing: -.01em; }
+  .eyebrow { display: inline-flex; align-items: center; gap: 8px; font-size: 12px; font-weight: 600; letter-spacing: .14em; text-transform: uppercase; color: var(--pink-deep); }
+  .eyebrow::before { content: ""; width: 6px; height: 6px; border-radius: 50%; background: var(--pink); }
+  h1, h2, h3 { letter-spacing: -.035em; line-height: 1.04; margin: 0; font-weight: 600; }
+  h2 { font-size: clamp(34px, 5vw, 56px); }
+  .lead { font-size: clamp(17px, 1.6vw, 19px); color: var(--muted); max-width: 640px; }
+  section.s { padding: clamp(80px, 11vw, 140px) 0; }
+  .s-head { display: grid; gap: 18px; margin-bottom: 52px; max-width: 760px; }
+
+  /* buttons */
+  .btn { display: inline-flex; align-items: center; justify-content: center; gap: 10px; font: inherit; font-weight: 600; font-size: 15px; border: 0; border-radius: 999px; padding: 15px 24px; cursor: pointer; text-decoration: none; transition: transform .15s, background .2s, box-shadow .2s, color .2s; }
+  .btn:active { transform: scale(.98); }
+  .btn-pink { background: var(--pink); color: #fff; box-shadow: 0 10px 30px -10px rgba(251,70,152,.7); }
+  .btn-pink:hover { background: var(--pink-deep); }
+  .btn-ghost { background: transparent; color: inherit; border: 1px solid currentColor; opacity: .9; }
+  .btn-ghost:hover { opacity: 1; }
+  .btn-dark { background: var(--ink); color: #fff; }
+  .btn-dark:hover { background: var(--ink3); }
+  .btn .arr { transition: transform .2s; }
+  .btn:hover .arr { transform: translateX(3px); }
+
+  /* nav */
+  .nav { position: fixed; inset: 0 0 auto 0; z-index: 50; transition: background .25s, border-color .25s, backdrop-filter .25s; border-bottom: 1px solid transparent; }
+  .nav.solid { background: rgba(14,14,17,.82); backdrop-filter: saturate(160%) blur(14px); -webkit-backdrop-filter: saturate(160%) blur(14px); border-color: var(--line-d); }
+  .nav .wrap { display: flex; align-items: center; justify-content: space-between; height: 72px; }
+  .brand { display: flex; align-items: center; gap: 11px; text-decoration: none; color: #fff; font-weight: 600; letter-spacing: -.02em; font-size: 17px; }
+  .brand img { width: 30px; height: auto; }
+  .nav-links { display: flex; gap: 30px; font-size: 14px; color: rgba(255,255,255,.75); }
+  .nav-links a { text-decoration: none; transition: color .15s; }
+  .nav-links a:hover { color: #fff; }
+  .nav-r { display: flex; align-items: center; gap: 12px; }
+  .lang { display: inline-flex; background: rgba(255,255,255,.08); border: 1px solid var(--line-d); border-radius: 999px; padding: 3px; }
+  .lang button { font: inherit; font-size: 12px; font-weight: 600; letter-spacing: .04em; border: 0; background: none; color: rgba(255,255,255,.65); padding: 6px 11px; border-radius: 999px; cursor: pointer; }
+  .lang button.on { background: #fff; color: var(--ink); }
+  .nav .btn { padding: 10px 18px; font-size: 14px; }
+  @media (max-width: 920px) { .nav-links { display: none; } }
+  @media (max-width: 520px) { .nav .btn { display: none; } .brand span { font-size: 16px; } }
+
+  /* hero */
+  .hero { background: var(--ink); color: #fff; position: relative; overflow: hidden; padding: 150px 0 110px; }
+  .hero::before { content: ""; position: absolute; width: 900px; height: 900px; right: -260px; top: -320px; background: radial-gradient(closest-side, rgba(251,70,152,.38), rgba(251,70,152,0)); pointer-events: none; }
+  .hero::after { content: ""; position: absolute; inset: 0; background-image: linear-gradient(rgba(255,255,255,.035) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,.035) 1px, transparent 1px); background-size: 64px 64px; mask-image: radial-gradient(ellipse at 70% 30%, #000 10%, transparent 70%); -webkit-mask-image: radial-gradient(ellipse at 70% 30%, #000 10%, transparent 70%); pointer-events: none; }
+  .hero .wrap { position: relative; z-index: 1; display: grid; grid-template-columns: 1.08fr .92fr; gap: 56px; align-items: center; }
+  .hero .eyebrow { color: #FF8CC0; }
+  .hero h1 { font-size: clamp(46px, 7.2vw, 92px); margin: 22px 0 24px; }
+  .hero h1 .serif { color: var(--pink); }
+  .hero .lead { color: var(--muted-d); }
+  .hero-ctas { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 36px; }
+  .hero-ctas .btn-ghost { color: #fff; border-color: rgba(255,255,255,.25); }
+  .hero-note { margin-top: 30px; font-size: 13px; color: rgba(255,255,255,.5); display: flex; gap: 18px; flex-wrap: wrap; }
+  .hero-note span::before { content: "\2713"; color: var(--pink); margin-right: 7px; }
+
+  .stage { position: relative; height: 540px; }
+  .phone { position: absolute; width: 210px; aspect-ratio: 9/16; border-radius: 28px; border: 1px solid rgba(255,255,255,.14); overflow: hidden; box-shadow: 0 40px 80px -30px rgba(0,0,0,.8); background: var(--ink2); }
+  .phone .fill { position: absolute; inset: 0; }
+  .phone .cap { position: absolute; left: 14px; right: 14px; bottom: 16px; font-size: 13px; line-height: 1.3; font-weight: 600; }
+  .phone .cap small { display: block; font-weight: 500; opacity: .7; font-size: 11px; margin-top: 3px; }
+  .phone .rec { position: absolute; top: 14px; left: 14px; display: flex; align-items: center; gap: 6px; font-size: 10px; font-weight: 600; letter-spacing: .1em; background: rgba(0,0,0,.35); border-radius: 999px; padding: 5px 9px; backdrop-filter: blur(6px); }
+  .phone .rec i { width: 6px; height: 6px; border-radius: 50%; background: var(--pink); animation: blink 1.4s infinite; }
+  @keyframes blink { 50% { opacity: .2; } }
+  .p1 { left: 0; top: 70px; transform: rotate(-6deg); }
+  .p1 .fill { background: radial-gradient(120% 80% at 20% 10%, #FF7DB6 0%, #C61F6A 45%, #2A0B1B 100%); }
+  .p2 { left: 32%; top: 0; z-index: 2; width: 236px; }
+  .p2 .fill { background: radial-gradient(100% 70% at 70% 20%, #3B3B46 0%, #18181D 60%), var(--ink2); }
+  .p2 .twin { position: absolute; inset: 0; display: grid; place-items: center; }
+  .p2 .twin img { width: 46%; opacity: .95; filter: drop-shadow(0 10px 30px rgba(251,70,152,.55)); animation: float 6s ease-in-out infinite; }
+  @keyframes float { 50% { transform: translateY(-10px); } }
+  .p3 { right: 0; top: 110px; transform: rotate(6deg); }
+  .p3 .fill { background: linear-gradient(160deg, #F7F5F1 0%, #FFD3E6 100%); }
+  .p3 .cap { color: var(--ink); }
+  .bars { position: absolute; left: 16px; right: 16px; top: 60px; display: flex; align-items: flex-end; gap: 7px; height: 150px; }
+  .bars i { flex: 1; background: var(--ink); border-radius: 6px 6px 2px 2px; opacity: .9; }
+  .bars i:last-child { background: var(--pink); }
+  .chip-f { position: absolute; z-index: 3; background: rgba(24,24,29,.85); border: 1px solid rgba(255,255,255,.12); backdrop-filter: blur(10px); border-radius: 14px; padding: 10px 14px; font-size: 12.5px; font-weight: 600; display: flex; align-items: center; gap: 10px; box-shadow: 0 20px 40px -20px rgba(0,0,0,.8); white-space: nowrap; }
+  .chip-f b { width: 26px; height: 26px; border-radius: 8px; display: grid; place-items: center; background: var(--pink); color: #fff; font-size: 13px; }
+  .cf1 { left: -14px; bottom: 60px; } .cf2 { right: -6px; top: 34px; }
+  @media (max-width: 980px) { .hero .wrap { grid-template-columns: 1fr; } .stage { height: 470px; max-width: 520px; width: 100%; margin: 0 auto; } }
+  @media (max-width: 560px) { .stage { height: 400px; } .phone { width: 160px; } .p2 { width: 180px; left: 28%; } .cf1 { left: 0; } .cf2 { right: 0; } }
+
+  /* what we do */
+  .what { display: grid; grid-template-columns: 1fr 1fr; gap: 64px; align-items: end; }
+  .what h2 .serif { color: var(--pink-deep); }
+  .pillars { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: var(--line); border: 1px solid var(--line); border-radius: var(--radius); overflow: hidden; margin-top: 64px; }
+  .pillar { background: var(--paper); padding: 30px 28px 34px; }
+  .pillar .k { font-size: 13px; font-weight: 600; color: var(--muted); }
+  .pillar h3 { font-size: 22px; margin: 14px 0 10px; }
+  .pillar p { margin: 0; color: var(--muted); font-size: 15px; }
+  @media (max-width: 860px) { .what { grid-template-columns: 1fr; gap: 24px; } .pillars { grid-template-columns: 1fr; } }
+
+  /* services */
+  .svc-sec { background: var(--card); border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+  .svc-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+  .svc { position: relative; text-align: left; font: inherit; color: inherit; background: var(--paper); border: 1px solid var(--line); border-radius: var(--radius); padding: 28px; cursor: pointer; transition: border-color .2s, transform .2s, box-shadow .25s, background .25s; display: flex; flex-direction: column; min-height: 250px; }
+  .svc:hover { transform: translateY(-3px); border-color: #D9D2C7; box-shadow: 0 24px 50px -30px rgba(14,14,17,.35); }
+  .svc .ic { width: 46px; height: 46px; border-radius: 14px; background: var(--ink); display: grid; place-items: center; margin-bottom: 22px; }
+  .svc .ic svg { width: 22px; height: 22px; stroke: var(--pink); fill: none; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
+  .svc h3 { font-size: 21px; margin-bottom: 10px; }
+  .svc > p { margin: 0; color: var(--muted); font-size: 15px; }
+  .svc ul { list-style: none; padding: 0; margin: 0; display: grid; gap: 9px; font-size: 14.5px; max-height: 0; overflow: hidden; opacity: 0; transition: max-height .35s ease, opacity .25s, margin .3s; }
+  .svc ul li { display: flex; gap: 10px; }
+  .svc ul li::before { content: ""; flex: none; width: 6px; height: 6px; margin-top: 8px; border-radius: 50%; background: var(--pink); }
+  .svc .more { margin-top: auto; padding-top: 22px; font-size: 13px; font-weight: 600; display: flex; align-items: center; gap: 8px; color: var(--ink); }
+  .svc .more i { width: 22px; height: 22px; border-radius: 50%; border: 1px solid var(--line); display: grid; place-items: center; font-style: normal; transition: transform .25s, background .2s; }
+  .svc.open { background: var(--ink); color: #fff; border-color: var(--ink); }
+  .svc.open > p { color: var(--muted-d); }
+  .svc.open .ic { background: var(--pink); } .svc.open .ic svg { stroke: #fff; }
+  .svc.open ul { max-height: 260px; opacity: 1; margin-top: 20px; }
+  .svc.open .more { color: #fff; } .svc.open .more i { transform: rotate(45deg); background: rgba(255,255,255,.1); border-color: transparent; }
+  .price { margin-top: 28px; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 22px; background: var(--ink); color: #fff; border-radius: var(--radius); padding: 30px 32px; }
+  .price .amt { font-size: clamp(26px, 3vw, 34px); font-weight: 600; letter-spacing: -.03em; }
+  .price .amt .serif { color: var(--pink); }
+  .price p { margin: 6px 0 0; color: var(--muted-d); font-size: 14px; max-width: 620px; }
+  @media (max-width: 960px) { .svc-grid { grid-template-columns: 1fr 1fr; } }
+  @media (max-width: 640px) { .svc-grid { grid-template-columns: 1fr; } .svc { min-height: 0; } }
+
+  /* digital twin */
+  .twin-sec { background: var(--ink); color: #fff; position: relative; overflow: hidden; }
+  .twin-sec::before { content: ""; position: absolute; width: 700px; height: 700px; left: -250px; bottom: -350px; background: radial-gradient(closest-side, rgba(251,70,152,.25), transparent); }
+  .twin-sec .wrap { position: relative; }
+  .twin-sec .eyebrow { color: #FF8CC0; }
+  .twin-sec .lead { color: var(--muted-d); }
+  .twin-sec h2 .serif { color: var(--pink); }
+  .twin-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 56px; align-items: center; }
+  .layers { display: grid; gap: 12px; }
+  .layer { display: grid; grid-template-columns: 52px 1fr; gap: 18px; align-items: start; background: rgba(255,255,255,.04); border: 1px solid var(--line-d); border-radius: 18px; padding: 20px 22px; transition: background .2s, border-color .2s; }
+  .layer:hover { background: rgba(251,70,152,.08); border-color: rgba(251,70,152,.35); }
+  .layer .n { font-family: 'Instrument Serif', serif; font-style: italic; font-size: 32px; line-height: 1; color: var(--pink); }
+  .layer h3 { font-size: 18px; margin-bottom: 4px; letter-spacing: -.02em; }
+  .layer p { margin: 0; font-size: 14.5px; color: var(--muted-d); }
+  .twin-vis { position: relative; aspect-ratio: 1; max-width: 460px; width: 100%; margin: 0 auto; }
+  .ring { position: absolute; border-radius: 50%; border: 1px dashed rgba(255,255,255,.16); inset: 0; animation: spin 60s linear infinite; }
+  .ring.r2 { inset: 14%; border-style: solid; border-color: rgba(255,255,255,.08); animation-duration: 40s; animation-direction: reverse; }
+  .ring.r3 { inset: 30%; border-color: rgba(251,70,152,.35); border-style: solid; animation: none; background: radial-gradient(closest-side, rgba(251,70,152,.18), transparent); }
+  @keyframes spin { to { transform: rotate(360deg); } }
+  .twin-core { position: absolute; inset: 38%; display: grid; place-items: center; }
+  .twin-core img { width: 100%; filter: drop-shadow(0 0 30px rgba(251,70,152,.6)); }
+  .orb { position: absolute; font-size: 12.5px; font-weight: 600; background: var(--ink2); border: 1px solid var(--line-d); border-radius: 999px; padding: 8px 14px; white-space: nowrap; }
+  .orb.o1 { top: 4%; left: 50%; transform: translateX(-50%); } .orb.o2 { right: -2%; top: 46%; } .orb.o3 { bottom: 4%; left: 50%; transform: translateX(-50%); } .orb.o4 { left: -2%; top: 46%; }
+  .quote-line { margin-top: 56px; font-size: clamp(24px, 3vw, 34px); letter-spacing: -.025em; line-height: 1.25; max-width: 860px; }
+  .quote-line .serif { color: var(--pink); }
+  @media (max-width: 900px) { .twin-grid { grid-template-columns: 1fr; } .twin-vis { max-width: 340px; } }
+
+  /* partners */
+  .who { display: grid; grid-template-columns: .9fr 1.1fr; gap: 64px; align-items: start; }
+  .tags { display: flex; flex-wrap: wrap; gap: 10px; }
+  .tags span { border: 1px solid var(--line); background: var(--card); border-radius: 999px; padding: 12px 18px; font-size: 15px; font-weight: 500; transition: background .2s, color .2s, border-color .2s; }
+  .tags span:hover { background: var(--ink); color: #fff; border-color: var(--ink); }
+  .who-box { margin-top: 28px; border-left: 2px solid var(--pink); padding: 4px 0 4px 22px; color: var(--muted); font-size: 16px; }
+  @media (max-width: 860px) { .who { grid-template-columns: 1fr; gap: 28px; } }
+
+  /* work */
+  .work-sec { background: var(--card); border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+  .work-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; }
+  .work { position: relative; aspect-ratio: 9/14; border-radius: var(--radius); overflow: hidden; background: var(--ink); color: #fff; display: flex; align-items: flex-end; padding: 20px; }
+  .work::before { content: ""; position: absolute; inset: 0; opacity: .9; }
+  .work.w1::before { background: radial-gradient(90% 70% at 30% 20%, #FF7DB6, #6E1240 60%, #18181D); }
+  .work.w2::before { background: radial-gradient(90% 70% at 70% 30%, #3A3A44, #18181D 70%); }
+  .work.w3::before { background: linear-gradient(170deg, #F2EEE8, #FFC6DE); } .work.w3 { color: var(--ink); }
+  .work.w4::before { background: radial-gradient(80% 60% at 50% 40%, rgba(251,70,152,.5), #18181D 70%); }
+  .work div { position: relative; }
+  .work .media { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; z-index: 0; }
+  .work .play { position: absolute; top: 50%; left: 50%; transform: translate(-50%,-50%); width: 58px; height: 58px; border-radius: 50%; background: rgba(255,255,255,.16); border: 1px solid rgba(255,255,255,.35); backdrop-filter: blur(8px); display: grid; place-items: center; z-index: 1; transition: transform .25s, background .25s; }
+  .work .play::after { content: ""; margin-left: 4px; border-left: 15px solid #fff; border-top: 10px solid transparent; border-bottom: 10px solid transparent; }
+  .work.w3 .play { background: rgba(14,14,17,.12); border-color: rgba(14,14,17,.25); } .work.w3 .play::after { border-left-color: var(--ink); }
+  .work:hover .play { transform: translate(-50%,-50%) scale(1.08); background: var(--pink); border-color: var(--pink); }
+  .work:hover .play::after { border-left-color: #fff; }
+  .work div { z-index: 1; }
+  .work small { display: block; font-size: 11px; letter-spacing: .14em; text-transform: uppercase; opacity: .7; font-weight: 600; margin-bottom: 6px; }
+  .work strong { font-size: 18px; letter-spacing: -.02em; font-weight: 600; }
+  .soon { margin-top: 20px; font-size: 14px; color: var(--muted); }
+  @media (max-width: 900px) { .work-grid { grid-template-columns: 1fr 1fr; } }
+
+  /* process */
+  .steps { display: grid; grid-template-columns: repeat(6, 1fr); gap: 0; border-top: 1px solid var(--line); }
+  .step { padding: 28px 22px 10px 0; position: relative; }
+  .step::before { content: ""; position: absolute; top: -5px; left: 0; width: 9px; height: 9px; border-radius: 50%; background: var(--paper); border: 2px solid var(--ink); }
+  .step:first-child::before { background: var(--pink); border-color: var(--pink); }
+  .step .k { font-size: 12px; font-weight: 600; color: var(--muted); letter-spacing: .08em; }
+  .step h3 { font-size: 19px; margin: 10px 0 8px; letter-spacing: -.02em; }
+  .step p { margin: 0; font-size: 14px; color: var(--muted); }
+  @media (max-width: 980px) { .steps { grid-template-columns: repeat(3, 1fr); row-gap: 20px; } }
+  @media (max-width: 560px) { .steps { grid-template-columns: 1fr; border-top: 0; border-left: 1px solid var(--line); padding-left: 22px; } .step { padding: 4px 0 20px; } .step::before { left: -27px; top: 8px; } }
+
+  /* founder */
+  .founder-sec { background: var(--ink); color: #fff; }
+  .founder { display: grid; grid-template-columns: .85fr 1.15fr; gap: 64px; align-items: center; }
+  .portrait { position: relative; aspect-ratio: 4/5; border-radius: 28px; overflow: hidden; background: radial-gradient(90% 70% at 30% 20%, #FF7DB6 0%, #B81C63 40%, #18181D 85%); display: grid; place-items: center; }
+  .portrait img.ph { width: 100%; height: 100%; object-fit: cover; }
+  .portrait .mono { font-family: 'Instrument Serif', serif; font-style: italic; font-size: 160px; line-height: 1; color: rgba(255,255,255,.9); }
+  .portrait .tagp { position: absolute; left: 18px; bottom: 18px; background: rgba(14,14,17,.6); backdrop-filter: blur(8px); border-radius: 999px; padding: 8px 14px; font-size: 13px; font-weight: 600; }
+  .founder h2 .serif { color: var(--pink); }
+  .founder .eyebrow { color: #FF8CC0; }
+  .founder p { color: var(--muted-d); font-size: 17px; }
+  .beliefs { display: grid; gap: 10px; margin: 26px 0; padding: 0; list-style: none; }
+  .beliefs li { display: flex; gap: 14px; align-items: baseline; font-size: 17px; border-bottom: 1px solid var(--line-d); padding-bottom: 12px; }
+  .beliefs li::before { content: "\2014"; color: var(--pink); }
+  .sign { font-size: clamp(22px, 2.6vw, 28px); letter-spacing: -.02em; line-height: 1.3; margin-top: 8px; }
+  .sign .serif { color: var(--pink); }
+  @media (max-width: 900px) { .founder { grid-template-columns: 1fr; gap: 36px; } .portrait { max-width: 420px; } }
+
+  /* discovery form */
+  .book-sec { background: var(--paper); }
+  .book { display: grid; grid-template-columns: .8fr 1.2fr; gap: 56px; align-items: start; }
+  .book-side { position: sticky; top: 100px; }
+  .book-side h2 .serif { color: var(--pink-deep); }
+  .book-side ol { margin: 28px 0 0; padding: 0; list-style: none; display: grid; gap: 12px; counter-reset: b; }
+  .book-side ol li { counter-increment: b; display: flex; gap: 14px; align-items: baseline; font-size: 15px; color: var(--muted); }
+  .book-side ol li::before { content: counter(b); flex: none; width: 26px; height: 26px; border-radius: 50%; display: grid; place-items: center; background: var(--card); border: 1px solid var(--line); font-size: 12px; font-weight: 600; color: var(--ink); }
+  .formcard { background: var(--card); border: 1px solid var(--line); border-radius: 28px; box-shadow: 0 40px 80px -50px rgba(14,14,17,.35); overflow: hidden; }
+  .progress { position: sticky; top: 72px; z-index: 5; background: rgba(255,255,255,.94); backdrop-filter: blur(10px); border-bottom: 1px solid var(--line); }
+  .progress .bar { height: 3px; width: 0%; background: linear-gradient(90deg, var(--pink), var(--pink-deep)); transition: width .3s; }
+  .progress .txt { padding: 12px 28px; font-size: 13px; font-weight: 600; color: var(--muted); display: flex; justify-content: space-between; gap: 12px; }
+  .progress .saved { color: #1F8A5B; opacity: 0; transition: opacity .3s; }
+  .progress .saved.show { opacity: 1; }
+  form#discovery { padding: 8px 28px 28px; }
+  .block { padding: 30px 0 8px; border-bottom: 1px solid var(--line); }
+  .block:last-of-type { border-bottom: 0; }
+  .bh { display: flex; gap: 14px; align-items: center; margin-bottom: 6px; }
+  .num { width: 34px; height: 34px; border-radius: 11px; display: grid; place-items: center; font-weight: 600; font-size: 15px; flex: none; background: var(--ink); color: #fff; }
+  .block.done .num { background: var(--pink); }
+  .bh h3 { font-size: 20px; letter-spacing: -.02em; }
+  .bdesc { color: var(--muted); font-size: 14px; margin: 0 0 18px 48px; }
+  .field { margin-bottom: 20px; }
+  .row2 { display: grid; grid-template-columns: 1fr 1fr; gap: 0 16px; }
+  @media (max-width: 600px) { .row2 { grid-template-columns: 1fr; } .bdesc { margin-left: 0; } form#discovery { padding: 4px 18px 22px; } .progress .txt { padding: 12px 18px; } }
+  label.q { display: block; font-weight: 600; font-size: 14.5px; margin-bottom: 7px; }
+  label.q .req { color: var(--pink-deep); }
+  .hint { display: block; font-size: 13px; color: var(--muted); margin: -3px 0 8px; }
+  input[type=text], input[type=email], input[type=tel], input[type=url], textarea {
+    width: 100%; font: inherit; font-size: 16px; color: var(--ink); background: var(--paper); border: 1px solid var(--line); border-radius: 12px; padding: 13px 14px; outline: none; transition: border-color .15s, box-shadow .15s, background .15s; }
+  input:focus, textarea:focus { border-color: var(--ink); background: #fff; box-shadow: 0 0 0 4px rgba(251,70,152,.14); }
+  textarea { min-height: 104px; resize: vertical; }
+  .invalid { border-color: var(--pink-deep) !important; box-shadow: 0 0 0 4px rgba(222,42,124,.12) !important; }
+  .chips { display: flex; flex-wrap: wrap; gap: 8px; }
+  .chips label { cursor: pointer; }
+  .chips input { position: absolute; opacity: 0; pointer-events: none; }
+  .chips span { display: inline-block; padding: 10px 15px; border-radius: 999px; border: 1px solid var(--line); background: var(--paper); font-size: 14px; font-weight: 500; transition: all .15s; user-select: none; }
+  .chips label:hover span { border-color: #CFC7BB; }
+  .chips input:checked + span { background: var(--ink); color: #fff; border-color: var(--ink); }
+  .chips input:focus-visible + span { box-shadow: 0 0 0 4px rgba(251,70,152,.25); }
+  .consent { display: flex; gap: 12px; align-items: flex-start; font-size: 13.5px; color: var(--muted); background: var(--paper); border: 1px solid var(--line); border-radius: 14px; padding: 14px 16px; cursor: pointer; }
+  .consent input { width: 18px; height: 18px; margin: 1px 0 0; accent-color: var(--pink); flex: none; }
+  .hp { position: absolute; left: -9999px; width: 1px; height: 1px; overflow: hidden; }
+  .send { margin: 8px -28px -28px; padding: 30px 28px; background: var(--ink); color: #fff; }
+  .send h3 { font-size: 21px; letter-spacing: -.02em; }
+  .send p { color: var(--muted-d); font-size: 14.5px; margin: 8px 0 20px; }
+  .send .btns { display: flex; flex-wrap: wrap; gap: 10px; }
+  .send .btn-ghost { color: #fff; border-color: rgba(255,255,255,.25); }
+  .send .btn:disabled { opacity: .6; cursor: wait; }
+  .status { margin-top: 14px; font-size: 14px; font-weight: 600; color: #FF8CC0; min-height: 20px; }
+  .err { color: #FF8CC0; font-size: 13.5px; font-weight: 600; margin: -6px 0 14px; display: none; }
+  @media (max-width: 600px) { .send { margin: 8px -18px -22px; padding: 26px 18px; } }
+  @media (max-width: 960px) { .book { grid-template-columns: 1fr; gap: 36px; } .book-side { position: static; } }
+
+  /* modal */
+  .overlay { position: fixed; inset: 0; background: rgba(14,14,17,.6); backdrop-filter: blur(6px); display: none; align-items: center; justify-content: center; padding: 20px; z-index: 100; }
+  .overlay.show { display: flex; }
+  .modal { background: var(--card); border-radius: 26px; max-width: 440px; width: 100%; padding: 36px 30px 26px; text-align: center; box-shadow: 0 40px 80px -30px rgba(0,0,0,.6); animation: pop .3s ease; }
+  @keyframes pop { from { transform: translateY(12px) scale(.97); opacity: 0; } }
+  .modal .ok { width: 64px; height: 64px; border-radius: 50%; margin: 0 auto 16px; display: grid; place-items: center; background: var(--pink); color: #fff; }
+  .modal .ok svg { width: 28px; height: 28px; stroke: #fff; stroke-width: 2.6; fill: none; stroke-linecap: round; stroke-linejoin: round; }
+  .modal h3 { font-size: 25px; margin-bottom: 8px; }
+  .modal p { color: var(--muted); font-size: 15px; margin: 0 0 22px; }
+  .modal .btns { display: grid; gap: 8px; }
+  .modal .close { background: none; border: 0; font: inherit; color: var(--muted); font-size: 14px; padding: 10px; cursor: pointer; }
+
+  /* footer */
+  footer { background: var(--ink); color: rgba(255,255,255,.55); font-size: 14px; border-top: 1px solid var(--line-d); }
+  footer .wrap { display: flex; flex-wrap: wrap; gap: 20px; justify-content: space-between; align-items: center; padding-top: 36px; padding-bottom: 36px; }
+
+  /* reveal */
+  .rv { opacity: 0; transform: translateY(18px); transition: opacity .7s ease, transform .7s ease; }
+  .rv.in { opacity: 1; transform: none; }
+  @media (prefers-reduced-motion: reduce) { .rv { opacity: 1; transform: none; transition: none; } * { animation: none !important; } html { scroll-behavior: auto; } }
+</style>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js" defer></script>
+</head>
+<body>
+
+<!-- ===================== NAV ===================== -->
+<header class="nav" id="nav">
+  <div class="wrap">
+    <a class="brand" href="#top"><img src="assets/logo-mark.png" alt=""><span>Nuri Solutions</span></a>
+    <nav class="nav-links" aria-label="Main">
+      <a href="#services" data-i18n="nav.services">Services</a>
+      <a href="#twin" data-i18n="nav.twin">Digital Twin</a>
+      <a href="#process" data-i18n="nav.process">Process</a>
+      <a href="#founder" data-i18n="nav.founder">Founder</a>
+    </nav>
+    <div class="nav-r">
+      <div class="lang" role="group" aria-label="Language">
+        <button type="button" data-lang="en" class="on">EN</button>
+        <button type="button" data-lang="es">ES</button>
+      </div>
+      <a class="btn btn-pink" href="#book" data-i18n="nav.cta">Book a call</a>
+    </div>
+  </div>
+</header>
+
+<!-- ===================== HERO ===================== -->
+<section class="hero" id="top">
+  <div class="wrap">
+    <div class="rv">
+      <span class="eyebrow" data-i18n="hero.eyebrow">Digital presence &middot; Personal brand &middot; Business operations</span>
+      <h1 data-i18n="hero.h1">The future of <span class="serif">personal branding</span> is here.</h1>
+      <p class="lead" data-i18n="hero.lead">We build and manage your digital presence, from strategy and short-form video to paid ads and AI-powered systems, so you can stay focused on leading, serving and growing your business.</p>
+      <div class="hero-ctas">
+        <a class="btn btn-pink" href="#book"><span data-i18n="hero.cta1">Book a discovery call</span> <span class="arr">&rarr;</span></a>
+        <a class="btn btn-ghost" href="#twin" data-i18n="hero.cta2">See the Digital Twin approach</a>
+      </div>
+      <div class="hero-note">
+        <span data-i18n="hero.n1">Based on California's Central Coast</span>
+        <span data-i18n="hero.n2">Serving clients nationwide</span>
+      </div>
+    </div>
+    <div class="stage rv" aria-hidden="true">
+      <div class="phone p1"><div class="fill"></div><div class="rec"><i></i>REC</div><div class="cap"><span data-i18n="hero.c1">Your story, told daily</span><small data-i18n="hero.c1s">Short-form video</small></div></div>
+      <div class="phone p2"><div class="fill"></div><div class="twin"><img src="assets/logo-mark.png" alt=""></div><div class="cap"><span data-i18n="hero.c2">Your Digital Twin</span><small data-i18n="hero.c2s">Voice &middot; Expertise &middot; Mission</small></div></div>
+      <div class="phone p3"><div class="fill"></div><div class="bars"><i style="height:30%"></i><i style="height:42%"></i><i style="height:38%"></i><i style="height:58%"></i><i style="height:72%"></i><i style="height:96%"></i></div><div class="cap"><span data-i18n="hero.c3">Consistent growth</span><small data-i18n="hero.c3s">Analytics &amp; reporting</small></div></div>
+      <div class="chip-f cf1"><b>&#9654;</b><span data-i18n="hero.f1">Strategy to publishing</span></div>
+      <div class="chip-f cf2"><b>&#10022;</b><span data-i18n="hero.f2">AI &amp; automation</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== WHAT WE DO ===================== -->
+<section class="s" id="about">
+  <div class="wrap">
+    <div class="what rv">
+      <div>
+        <span class="eyebrow" data-i18n="what.eyebrow">What we do</span>
+        <h2 style="margin-top:18px" data-i18n="what.h2">We don't just post content. We <span class="serif">build and manage</span> your digital presence.</h2>
+      </div>
+      <p class="lead" data-i18n="what.lead">Nuri Solutions is a digital presence and business operations partner. We combine personal branding, storytelling, digital marketing, AI technology and business systems into one strategic ecosystem, and we become an extension of your team.</p>
+    </div>
+    <div class="pillars rv">
+      <div class="pillar"><span class="k">01</span><h3 data-i18n="what.p1">Strategy</h3><p data-i18n="what.p1t">Market research, audience strategy and a clear plan for how you show up across every platform.</p></div>
+      <div class="pillar"><span class="k">02</span><h3 data-i18n="what.p2">Creative execution</h3><p data-i18n="what.p2t">Ideation, scripts, short-form video, editing and publishing, done consistently and authentically.</p></div>
+      <div class="pillar"><span class="k">03</span><h3 data-i18n="what.p3">Digital systems</h3><p data-i18n="what.p3t">CRM, funnels, email and SMS automation and AI tools that support your growth while you focus on your work.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== SERVICES ===================== -->
+<section class="s svc-sec" id="services">
+  <div class="wrap">
+    <div class="s-head rv">
+      <span class="eyebrow" data-i18n="svc.eyebrow">Our services</span>
+      <h2 data-i18n="svc.h2">Everything your brand needs, <span class="serif">in one place.</span></h2>
+      <p class="lead" data-i18n="svc.lead">Tap a card to see what's included.</p>
+    </div>
+    <div class="svc-grid">
+      <button type="button" class="svc rv" aria-expanded="false">
+        <span class="ic"><svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 21c1.5-4 4.5-6 8-6s6.5 2 8 6"/></svg></span>
+        <h3 data-i18n="svc.1">Digital Presence &amp; Branding</h3>
+        <p data-i18n="svc.1t">A strong, consistent and professional brand everywhere people find you.</p>
+        <ul><li data-i18n="svc.1a">Digital Presence Optimization</li><li data-i18n="svc.1b">Personal Branding &amp; Brand Development</li><li data-i18n="svc.1c">Social Media Profile Optimization</li><li data-i18n="svc.1d">Google Business Profile Optimization</li></ul>
+        <span class="more"><i>+</i><span data-i18n="svc.more">What's included</span></span>
+      </button>
+      <button type="button" class="svc rv" aria-expanded="false">
+        <span class="ic"><svg viewBox="0 0 24 24"><rect x="6" y="2.5" width="12" height="19" rx="3"/><path d="M10.5 9.5v5l4-2.5z"/></svg></span>
+        <h3 data-i18n="svc.2">Social Media &amp; Short-Form Video</h3>
+        <p data-i18n="svc.2t">Authentic storytelling that builds credibility, one video at a time.</p>
+        <ul><li data-i18n="svc.2a">Social Media Management</li><li data-i18n="svc.2b">Short-Form Video Marketing</li><li data-i18n="svc.2c">Content Creation &amp; Video Editing</li><li data-i18n="svc.2d">Content Ideation &amp; Scriptwriting</li><li data-i18n="svc.2e">Content Distribution &amp; Publishing</li></ul>
+        <span class="more"><i>+</i><span data-i18n="svc.more">What's included</span></span>
+      </button>
+      <button type="button" class="svc rv" aria-expanded="false">
+        <span class="ic"><svg viewBox="0 0 24 24"><path d="M3 11v2a2 2 0 0 0 2 2h2l5 4V5L7 9H5a2 2 0 0 0-2 2z"/><path d="M16 8.5a5 5 0 0 1 0 7M19 6a8.5 8.5 0 0 1 0 12"/></svg></span>
+        <h3 data-i18n="svc.3">Paid Advertising &amp; Research</h3>
+        <p data-i18n="svc.3t">Reach the right audience with campaigns built on real insight.</p>
+        <ul><li data-i18n="svc.3a">Paid Advertising &amp; Campaign Management</li><li data-i18n="svc.3b">Market Research &amp; Audience Strategy</li></ul>
+        <span class="more"><i>+</i><span data-i18n="svc.more">What's included</span></span>
+      </button>
+      <button type="button" class="svc rv" aria-expanded="false">
+        <span class="ic"><svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="16" rx="2.5"/><path d="M3 9h18M7 6.5h.01M10 6.5h.01"/></svg></span>
+        <h3 data-i18n="svc.4">Websites &amp; Funnels</h3>
+        <p data-i18n="svc.4t">A home base that turns attention into conversations and clients.</p>
+        <ul><li data-i18n="svc.4a">Website Design &amp; Optimization</li><li data-i18n="svc.4b">Lead Generation &amp; Marketing Funnels</li></ul>
+        <span class="more"><i>+</i><span data-i18n="svc.more">What's included</span></span>
+      </button>
+      <button type="button" class="svc rv" aria-expanded="false">
+        <span class="ic"><svg viewBox="0 0 24 24"><path d="M12 3l1.8 4.7L18.5 9.5l-4.7 1.8L12 16l-1.8-4.7L5.5 9.5l4.7-1.8z"/><path d="M18.5 15l.8 2.2 2.2.8-2.2.8-.8 2.2-.8-2.2-2.2-.8 2.2-.8z"/></svg></span>
+        <h3 data-i18n="svc.5">AI Solutions &amp; Automation</h3>
+        <p data-i18n="svc.5t">Smart systems that keep your message working while you're out serving others.</p>
+        <ul><li data-i18n="svc.5a">AI Influencers &amp; Digital Twin Development</li><li data-i18n="svc.5b">AI Solutions &amp; Business Automation</li><li data-i18n="svc.5c">Email &amp; SMS Marketing Automation</li></ul>
+        <span class="more"><i>+</i><span data-i18n="svc.more">What's included</span></span>
+      </button>
+      <button type="button" class="svc rv" aria-expanded="false">
+        <span class="ic"><svg viewBox="0 0 24 24"><path d="M4 20V10M10 20V4M16 20v-7M22 20H2"/></svg></span>
+        <h3 data-i18n="svc.6">CRM &amp; Analytics</h3>
+        <p data-i18n="svc.6t">Clear systems and numbers so every decision is an informed one.</p>
+        <ul><li data-i18n="svc.6a">CRM Setup &amp; Management</li><li data-i18n="svc.6b">Digital Analytics &amp; Performance Reporting</li></ul>
+        <span class="more"><i>+</i><span data-i18n="svc.more">What's included</span></span>
+      </button>
+    </div>
+    <div class="price rv">
+      <div>
+        <div class="amt" data-i18n="price.amt">Social media management packages <span class="serif">starting at $3,000/month</span></div>
+        <p data-i18n="price.t">Custom packages are available based on your goals, services, number of platforms and scope of work. One-time setup, optimization and onboarding fees may apply.</p>
+      </div>
+      <a class="btn btn-pink" href="#book"><span data-i18n="price.cta">Get a personalized proposal</span> <span class="arr">&rarr;</span></a>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== DIGITAL TWIN ===================== -->
+<section class="s twin-sec" id="twin">
+  <div class="wrap">
+    <div class="twin-grid">
+      <div>
+        <div class="s-head rv" style="margin-bottom:36px">
+          <span class="eyebrow" data-i18n="twin.eyebrow">The Digital Twin approach</span>
+          <h2 data-i18n="twin.h2">Your message, living and breathing <span class="serif">everywhere.</span></h2>
+          <p class="lead" data-i18n="twin.lead">We develop a deep understanding of who you are, then turn it into a consistent content system that authentically represents you across every digital channel.</p>
+        </div>
+        <div class="layers">
+          <div class="layer rv"><span class="n">01</span><div><h3 data-i18n="twin.1">Voice</h3><p data-i18n="twin.1t">How you speak, the words you choose and the tone your audience trusts.</p></div></div>
+          <div class="layer rv"><span class="n">02</span><div><h3 data-i18n="twin.2">Expertise</h3><p data-i18n="twin.2t">The knowledge and insight that make you the person people need to hear from.</p></div></div>
+          <div class="layer rv"><span class="n">03</span><div><h3 data-i18n="twin.3">Personality</h3><p data-i18n="twin.3t">The energy and presence that make your content unmistakably yours.</p></div></div>
+          <div class="layer rv"><span class="n">04</span><div><h3 data-i18n="twin.4">Values &amp; mission</h3><p data-i18n="twin.4t">What you stand for, so every piece of content moves your mission forward.</p></div></div>
+        </div>
+      </div>
+      <div class="twin-vis rv" aria-hidden="true">
+        <div class="ring"></div><div class="ring r2"></div><div class="ring r3"></div>
+        <div class="twin-core"><img src="assets/logo-mark.png" alt=""></div>
+        <span class="orb o1" data-i18n="twin.1">Voice</span><span class="orb o2" data-i18n="twin.2">Expertise</span><span class="orb o3" data-i18n="twin.3">Personality</span><span class="orb o4" data-i18n="twin.4o">Mission</span>
+      </div>
+    </div>
+    <p class="quote-line rv" data-i18n="twin.q">We prioritize meaningful relationships, community and credibility <span class="serif">over chasing temporary viral trends.</span></p>
+  </div>
+</section>
+
+<!-- ===================== WHO WE PARTNER WITH ===================== -->
+<section class="s" id="partners">
+  <div class="wrap who">
+    <div class="rv">
+      <span class="eyebrow" data-i18n="who.eyebrow">Who we partner with</span>
+      <h2 style="margin-top:18px" data-i18n="who.h2">Leaders with a message <span class="serif">worth sharing.</span></h2>
+    </div>
+    <div class="rv">
+      <p class="lead" style="margin-top:0" data-i18n="who.lead">We especially enjoy working with experts and leaders who have valuable knowledge, services or a meaningful mission to share, but need a dedicated team to execute their digital strategy.</p>
+      <div class="tags" style="margin-top:26px">
+        <span data-i18n="who.1">Mission-driven business owners</span><span data-i18n="who.2">Entrepreneurs</span><span data-i18n="who.3">Professionals</span><span data-i18n="who.4">Educators</span><span data-i18n="who.5">Industry experts</span><span data-i18n="who.6">Thought leaders</span><span data-i18n="who.7">Organizations</span>
+      </div>
+      <p class="who-box" data-i18n="who.box">If you value authentic storytelling, strategic marketing, professional brand representation and long-term growth, we'll get along well.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== WORK (placeholders until Nuri sends her portfolio) ===================== -->
+<section class="s work-sec" id="work">
+  <div class="wrap">
+    <div class="s-head rv">
+      <span class="eyebrow" data-i18n="work.eyebrow">Our work</span>
+      <h2 data-i18n="work.h2">Stories that <span class="serif">move people.</span></h2>
+    </div>
+    <!-- PLACEHOLDERS: to add real work, put inside each .work:
+           <video class="media" src="assets/work/video1.mp4" muted loop playsinline autoplay></video>
+           or <img class="media" src="assets/work/project1.jpg" alt="...">  and remove the <span class="play"> if it is a photo -->
+    <div class="work-grid">
+      <div class="work w1 rv"><span class="play"></span><div><small data-i18n="work.1k">Short-form video</small><strong data-i18n="work.1">Reels &amp; TikToks</strong></div></div>
+      <div class="work w2 rv"><span class="play"></span><div><small data-i18n="work.2k">Branding</small><strong data-i18n="work.2">Personal brands</strong></div></div>
+      <div class="work w3 rv"><span class="play"></span><div><small data-i18n="work.3k">Campaigns</small><strong data-i18n="work.3">Digital campaigns</strong></div></div>
+      <div class="work w4 rv"><span class="play"></span><div><small data-i18n="work.4k">AI</small><strong data-i18n="work.4">Digital Twins &amp; AI content</strong></div></div>
+    </div>
+    <p class="soon rv" data-i18n="work.soon">Want to see more? Ask us for recent examples on your discovery call.</p>
+  </div>
+</section>
+
+<!-- ===================== PROCESS ===================== -->
+<section class="s" id="process">
+  <div class="wrap">
+    <div class="s-head rv">
+      <span class="eyebrow" data-i18n="proc.eyebrow">Our process</span>
+      <h2 data-i18n="proc.h2">From first call to <span class="serif">ongoing growth.</span></h2>
+    </div>
+    <div class="steps">
+      <div class="step rv"><span class="k">01</span><h3 data-i18n="proc.1">Discovery</h3><p data-i18n="proc.1t">We learn about you, your audience and your goals.</p></div>
+      <div class="step rv"><span class="k">02</span><h3 data-i18n="proc.2">Strategy</h3><p data-i18n="proc.2t">A clear plan for platforms, content and growth.</p></div>
+      <div class="step rv"><span class="k">03</span><h3 data-i18n="proc.3">Setup &amp; optimization</h3><p data-i18n="proc.3t">Profiles, systems and tools ready to perform.</p></div>
+      <div class="step rv"><span class="k">04</span><h3 data-i18n="proc.4">Content creation</h3><p data-i18n="proc.4t">Scripts, filming support, editing and design.</p></div>
+      <div class="step rv"><span class="k">05</span><h3 data-i18n="proc.5">Launch</h3><p data-i18n="proc.5t">Your new presence goes live, consistently.</p></div>
+      <div class="step rv"><span class="k">06</span><h3 data-i18n="proc.6">Ongoing management</h3><p data-i18n="proc.6t">Publishing, ads, reporting and improvement.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== FOUNDER ===================== -->
+<section class="s founder-sec" id="founder">
+  <div class="wrap founder">
+    <div class="portrait rv">
+      <!-- PLACEHOLDER: to add Nuri's photo, save it as assets/nuri.jpg, add <img class="ph" src="assets/nuri.jpg" alt="Nuri Roman"> here and delete the .mono span -->
+      <span class="mono">N</span>
+      <span class="tagp">Nuri Roman &middot; <span data-i18n="founder.role">Founder</span></span>
+    </div>
+    <div class="rv">
+      <span class="eyebrow" data-i18n="founder.eyebrow">Meet the founder</span>
+      <h2 style="margin:18px 0 22px" data-i18n="founder.h2">Hi, I'm Nuri. My name means <span class="serif">Light and Fire.</span></h2>
+      <p data-i18n="founder.p1">Born and raised in Santa Maria, California, I'm on a mission to partner with truth-tellers, educators, advocates and innovators who want to change the world, with content that shifts culture and lessens unnecessary suffering caused by innocent ignorance.</p>
+      <ul class="beliefs">
+        <li data-i18n="founder.b1">God-centered leadership</li>
+        <li data-i18n="founder.b2">Telling the truth with love and empathy</li>
+        <li data-i18n="founder.b3">Helping people gain understanding, one video at a time</li>
+      </ul>
+      <p data-i18n="founder.p2">If you're already awakening people, calling out injustice or educating your audience, but need a system to spread your message at scale, you're the kind of leader I partner with.</p>
+      <p class="sign" data-i18n="founder.sign">You have the insight. <span class="serif">I direct the infrastructure to amplify it.</span></p>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== BOOK / DISCOVERY FORM ===================== -->
+<section class="s book-sec" id="book">
+  <div class="wrap book">
+    <div class="book-side rv">
+      <span class="eyebrow" data-i18n="book.eyebrow">Book a discovery call</span>
+      <h2 style="margin-top:18px" data-i18n="book.h2">Let's build your <span class="serif">Digital Twin.</span></h2>
+      <p class="lead" style="margin-top:18px" data-i18n="book.lead">Tell us about your brand and goals. Nuri reviews every answer before your call, so the time we spend together is focused on you.</p>
+      <ol>
+        <li data-i18n="book.s1">Fill out this short form (about 5 minutes)</li>
+        <li data-i18n="book.s2">We review your answers and reach out to schedule a call</li>
+        <li data-i18n="book.s3">You receive a personalized proposal</li>
+      </ol>
+    </div>
+
+    <div class="formcard rv">
+      <div class="progress"><div class="bar" id="bar"></div><div class="txt"><span id="ptxt">0%</span><span class="saved" id="saved" data-i18n="form.saved">Progress saved</span></div></div>
+      <form id="discovery" novalidate>
+        <div class="hp" aria-hidden="true"><label>Company website <input type="text" name="company_site" id="company_site" tabindex="-1" autocomplete="off"></label></div>
+
+        <section class="block" data-key="contact">
+          <div class="bh"><div class="num">1</div><h3 data-i18n="form.b1">About you</h3></div>
+          <p class="bdesc" data-i18n="form.b1d">So we know who we're talking to and how to reach you.</p>
+          <div class="row2">
+            <div class="field"><label class="q" for="full_name"><span data-i18n="form.name">Full name</span> <span class="req">*</span></label><input type="text" id="full_name" name="full_name" data-label="Full name" autocomplete="name" required></div>
+            <div class="field"><label class="q" for="brand_name"><span data-i18n="form.brand">Business / brand name</span> <span class="req">*</span></label><input type="text" id="brand_name" name="brand_name" data-label="Business / brand name" autocomplete="organization" required></div>
+            <div class="field"><label class="q" for="email"><span data-i18n="form.email">Email address</span> <span class="req">*</span></label><input type="email" id="email" name="email" data-label="Email" autocomplete="email" inputmode="email" required></div>
+            <div class="field"><label class="q" for="phone"><span data-i18n="form.phone">Phone number</span> <span class="req">*</span></label><input type="tel" id="phone" name="phone" data-label="Phone" autocomplete="tel" inputmode="tel" required></div>
+          </div>
+          <label class="consent field"><input type="checkbox" id="consent" name="marketing_consent" data-label="Marketing consent"><span data-i18n="form.consent">I agree to receive emails and text messages from Nuri Solutions about my inquiry, services and offers. Message and data rates may apply. I can unsubscribe at any time.</span></label>
+        </section>
+
+        <section class="block" data-key="business">
+          <div class="bh"><div class="num">2</div><h3 data-i18n="form.b2">Your business</h3></div>
+          <p class="bdesc" data-i18n="form.b2d">Where you are today online.</p>
+          <div class="row2">
+            <div class="field"><label class="q" for="website" data-i18n="form.web">Business website</label><span class="hint" data-i18n="form.ifapp">If applicable</span><input type="text" id="website" name="website" data-label="Website" inputmode="url" placeholder="www.yourbrand.com"></div>
+            <div class="field"><label class="q" for="industry" data-i18n="form.industry">What industry are you in?</label><span class="hint" data-i18n="form.industryh">Example: real estate, coaching, health</span><input type="text" id="industry" name="industry" data-label="Industry"></div>
+          </div>
+          <div class="field"><label class="q" for="socials" data-i18n="form.socials">Social media profiles</label><span class="hint" data-i18n="form.socialsh">Links or @handles, if applicable</span><textarea id="socials" name="socials" data-label="Social media profiles" style="min-height:76px" placeholder="instagram.com/yourbrand, @yourbrand on TikTok..."></textarea></div>
+          <div class="field"><label class="q" data-i18n="form.brandtype">Are you looking to build a personal brand, a business brand, or both?</label>
+            <div class="chips" data-name="brand_type" data-label="Brand type" data-single>
+              <label><input type="checkbox" value="Personal brand"><span data-i18n="form.bt1">Personal brand</span></label>
+              <label><input type="checkbox" value="Business brand"><span data-i18n="form.bt2">Business brand</span></label>
+              <label><input type="checkbox" value="Both"><span data-i18n="form.bt3">Both</span></label>
+            </div>
+          </div>
+        </section>
+
+        <section class="block" data-key="services">
+          <div class="bh"><div class="num">3</div><h3 data-i18n="form.b3">Services</h3></div>
+          <p class="bdesc" data-i18n="form.b3d">Choose all that interest you.</p>
+          <div class="field">
+            <div class="chips" data-name="services" data-label="Services of interest">
+              <label><input type="checkbox" value="Digital Presence Strategy"><span data-i18n="form.s1">Digital Presence Strategy</span></label>
+              <label><input type="checkbox" value="Personal Branding"><span data-i18n="form.s2">Personal Branding</span></label>
+              <label><input type="checkbox" value="Social Media Management"><span data-i18n="form.s3">Social Media Management</span></label>
+              <label><input type="checkbox" value="Short-Form Video Marketing"><span data-i18n="form.s4">Short-Form Video Marketing</span></label>
+              <label><input type="checkbox" value="Paid Advertising"><span data-i18n="form.s5">Paid Advertising</span></label>
+              <label><input type="checkbox" value="Website Optimization"><span data-i18n="form.s6">Website Optimization</span></label>
+              <label><input type="checkbox" value="AI Solutions & Automation"><span data-i18n="form.s7">AI Solutions &amp; Automation</span></label>
+              <label><input type="checkbox" value="CRM & Business Systems"><span data-i18n="form.s8">CRM &amp; Business Systems</span></label>
+              <label><input type="checkbox" value="Other"><span data-i18n="form.s9">Other</span></label>
+            </div>
+          </div>
+          <div class="field"><label class="q" for="services_other" data-i18n="form.sother">Other services (optional)</label><input type="text" id="services_other" name="services_other" data-label="Other services"></div>
+        </section>
+
+        <section class="block" data-key="goals">
+          <div class="bh"><div class="num">4</div><h3 data-i18n="form.b4">Goals &amp; challenges</h3></div>
+          <p class="bdesc" data-i18n="form.b4d">This is the most helpful part for preparing your call.</p>
+          <div class="field"><label class="q" for="goals" data-i18n="form.goals">What are your primary business or marketing goals?</label><textarea id="goals" name="goals" data-label="Primary goals"></textarea></div>
+          <div class="field"><label class="q" for="challenges" data-i18n="form.challenges">What are your biggest challenges with your current digital presence?</label><textarea id="challenges" name="challenges" data-label="Biggest challenges"></textarea></div>
+        </section>
+
+        <section class="block" data-key="budget">
+          <div class="bh"><div class="num">5</div><h3 data-i18n="form.b5">Budget &amp; timing</h3></div>
+          <p class="bdesc" data-i18n="form.b5d">Helps us recommend the right package for you.</p>
+          <div class="field"><label class="q" data-i18n="form.budget">What is your estimated monthly marketing budget?</label>
+            <div class="chips" data-name="budget" data-label="Monthly budget" data-single>
+              <label><input type="checkbox" value="Under $3,000"><span data-i18n="form.bu1">Under $3,000</span></label>
+              <label><input type="checkbox" value="$3,000-$5,000"><span>$3,000&ndash;$5,000</span></label>
+              <label><input type="checkbox" value="$5,000-$10,000"><span>$5,000&ndash;$10,000</span></label>
+              <label><input type="checkbox" value="$10,000+"><span>$10,000+</span></label>
+            </div>
+          </div>
+          <div class="field"><label class="q" data-i18n="form.start">When are you looking to get started?</label>
+            <div class="chips" data-name="start" data-label="Start" data-single>
+              <label><input type="checkbox" value="Immediately"><span data-i18n="form.st1">Immediately</span></label>
+              <label><input type="checkbox" value="Within 30 days"><span data-i18n="form.st2">Within 30 days</span></label>
+              <label><input type="checkbox" value="Within 1-3 months"><span data-i18n="form.st3">Within 1&ndash;3 months</span></label>
+              <label><input type="checkbox" value="Just exploring options"><span data-i18n="form.st4">Just exploring options</span></label>
+            </div>
+          </div>
+          <div class="field"><label class="q" for="notes" data-i18n="form.notes">Is there anything else we should know about your business or project?</label><textarea id="notes" name="notes" data-label="Anything else"></textarea></div>
+        </section>
+
+        <div class="send">
+          <h3 data-i18n="form.sendh">Send your answers</h3>
+          <p data-i18n="form.sendp">Nuri will review your answers and reach out to schedule your discovery call. You can also download a PDF copy for your records.</p>
+          <div class="err" id="err" data-i18n="form.err">Please complete the fields marked with * (name, business, email and phone).</div>
+          <div class="btns">
+            <button type="button" class="btn btn-pink" id="sendBtn"><span data-i18n="form.send">Send my answers</span> <span class="arr">&rarr;</span></button>
+            <button type="button" class="btn btn-ghost" id="pdfBtn" data-i18n="form.pdf">Download PDF</button>
+          </div>
+          <div class="status" id="status" role="status" aria-live="polite"></div>
+        </div>
+      </form>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <a class="brand" href="#top"><img src="assets/logo-mark.png" alt=""><span>Nuri Solutions</span></a>
+    <span data-i18n="footer.loc">Central Coast, California &middot; Serving clients nationwide</span>
+    <span>&copy; <span id="yr">2026</span> Nuri Solutions</span>
+  </div>
+</footer>
+
+<div class="overlay" id="done" role="dialog" aria-modal="true" aria-labelledby="doneTitle">
+  <div class="modal">
+    <div class="ok"><svg viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></div>
+    <h3 id="doneTitle" data-i18n="done.h">Thank you! Your answers were sent.</h3>
+    <p data-i18n="done.p">Nuri will review them and reach out soon to schedule your discovery call. Check your inbox for a confirmation.</p>
+    <div class="btns">
+      <button type="button" class="btn btn-pink" id="donePdf" data-i18n="done.pdf">Download my PDF</button>
+      <button type="button" class="close" id="doneClose" data-i18n="done.close">Close</button>
+    </div>
+  </div>
+</div>
+
+<script>
+/* ============================================================
+   CONFIG — paste the Apps Script Web App URL (ends in /exec).
+   If empty, the form runs in demo mode (nothing is sent).
+   ============================================================ */
+var NURI_CONFIG = {
+  endpoint: '',
+  storageKey: 'nuri-discovery-v1'
+};
+
+(function () {
+  /* ---------------- i18n ---------------- */
+  var ES = {
+    'nav.services': 'Servicios', 'nav.twin': 'Gemelo Digital', 'nav.process': 'Proceso', 'nav.founder': 'Fundadora', 'nav.cta': 'Agenda una llamada',
+    'hero.eyebrow': 'Presencia digital &middot; Marca personal &middot; Operaciones de negocio',
+    'hero.h1': 'El futuro de la <span class="serif">marca personal</span> ya está aquí.',
+    'hero.lead': 'Construimos y gestionamos tu presencia digital, desde la estrategia y el video corto hasta los anuncios pagados y los sistemas con IA, para que tú te enfoques en liderar, servir y hacer crecer tu negocio.',
+    'hero.cta1': 'Agenda una llamada de descubrimiento', 'hero.cta2': 'Conoce el enfoque Gemelo Digital',
+    'hero.n1': 'Desde la Costa Central de California', 'hero.n2': 'Clientes en todo Estados Unidos',
+    'hero.c1': 'Tu historia, contada a diario', 'hero.c1s': 'Video corto', 'hero.c2': 'Tu Gemelo Digital', 'hero.c2s': 'Voz &middot; Experiencia &middot; Misión',
+    'hero.c3': 'Crecimiento constante', 'hero.c3s': 'Analítica y reportes', 'hero.f1': 'De la estrategia a la publicación', 'hero.f2': 'IA y automatización',
+    'what.eyebrow': 'Lo que hacemos',
+    'what.h2': 'No solo publicamos contenido. <span class="serif">Construimos y gestionamos</span> tu presencia digital.',
+    'what.lead': 'Nuri Solutions es tu aliado en presencia digital y operaciones de negocio. Unimos marca personal, storytelling, marketing digital, inteligencia artificial y sistemas de negocio en un solo ecosistema estratégico, y nos convertimos en una extensión de tu equipo.',
+    'what.p1': 'Estrategia', 'what.p1t': 'Investigación de mercado, estrategia de audiencia y un plan claro de cómo te presentas en cada plataforma.',
+    'what.p2': 'Ejecución creativa', 'what.p2t': 'Ideas, guiones, video corto, edición y publicación, con constancia y autenticidad.',
+    'what.p3': 'Sistemas digitales', 'what.p3t': 'CRM, embudos, automatización de email y SMS y herramientas de IA que impulsan tu crecimiento mientras te enfocas en tu trabajo.',
+    'svc.eyebrow': 'Nuestros servicios', 'svc.h2': 'Todo lo que tu marca necesita, <span class="serif">en un solo lugar.</span>', 'svc.lead': 'Toca una tarjeta para ver qué incluye.', 'svc.more': 'Qué incluye',
+    'svc.1': 'Presencia digital y marca', 'svc.1t': 'Una marca sólida, coherente y profesional en todos los lugares donde te encuentran.',
+    'svc.1a': 'Optimización de presencia digital', 'svc.1b': 'Marca personal y desarrollo de marca', 'svc.1c': 'Optimización de perfiles en redes sociales', 'svc.1d': 'Optimización del Perfil de Negocio en Google',
+    'svc.2': 'Redes sociales y video corto', 'svc.2t': 'Storytelling auténtico que genera credibilidad, un video a la vez.',
+    'svc.2a': 'Gestión de redes sociales', 'svc.2b': 'Marketing con video corto', 'svc.2c': 'Creación de contenido y edición de video', 'svc.2d': 'Ideas de contenido y guiones', 'svc.2e': 'Distribución y publicación de contenido',
+    'svc.3': 'Publicidad pagada e investigación', 'svc.3t': 'Llega a la audiencia correcta con campañas basadas en información real.',
+    'svc.3a': 'Publicidad pagada y gestión de campañas', 'svc.3b': 'Investigación de mercado y estrategia de audiencia',
+    'svc.4': 'Sitios web y embudos', 'svc.4t': 'Una base que convierte la atención en conversaciones y clientes.',
+    'svc.4a': 'Diseño y optimización de sitios web', 'svc.4b': 'Generación de prospectos y embudos de marketing',
+    'svc.5': 'Soluciones de IA y automatización', 'svc.5t': 'Sistemas inteligentes que mantienen tu mensaje activo mientras tú sirves a otros.',
+    'svc.5a': 'Influencers con IA y desarrollo de Gemelo Digital', 'svc.5b': 'Soluciones de IA y automatización de negocios', 'svc.5c': 'Automatización de marketing por email y SMS',
+    'svc.6': 'CRM y analítica', 'svc.6t': 'Sistemas y números claros para que cada decisión sea informada.',
+    'svc.6a': 'Configuración y gestión de CRM', 'svc.6b': 'Analítica digital y reportes de rendimiento',
+    'price.amt': 'Paquetes de gestión de redes sociales <span class="serif">desde $3,000 USD/mes</span>',
+    'price.t': 'Ofrecemos paquetes a la medida según tus objetivos, servicios, número de plataformas y alcance del trabajo. Pueden aplicar tarifas únicas de configuración, optimización e incorporación.',
+    'price.cta': 'Recibe una propuesta personalizada',
+    'twin.eyebrow': 'El enfoque Gemelo Digital', 'twin.h2': 'Tu mensaje, vivo y presente <span class="serif">en todas partes.</span>',
+    'twin.lead': 'Conocemos a fondo quién eres y lo convertimos en un sistema de contenido constante que te representa con autenticidad en cada canal digital.',
+    'twin.1': 'Voz', 'twin.1t': 'Cómo hablas, las palabras que eliges y el tono en el que confía tu audiencia.',
+    'twin.2': 'Experiencia', 'twin.2t': 'El conocimiento que te convierte en la persona que la gente necesita escuchar.',
+    'twin.3': 'Personalidad', 'twin.3t': 'La energía y la presencia que hacen que tu contenido sea inconfundiblemente tuyo.',
+    'twin.4': 'Valores y misión', 'twin.4t': 'Lo que defiendes, para que cada pieza de contenido haga avanzar tu misión.', 'twin.4o': 'Misión',
+    'twin.q': 'Priorizamos las relaciones significativas, la comunidad y la credibilidad <span class="serif">por encima de las modas virales pasajeras.</span>',
+    'who.eyebrow': 'Con quién trabajamos', 'who.h2': 'Líderes con un mensaje <span class="serif">que vale la pena compartir.</span>',
+    'who.lead': 'Disfrutamos especialmente trabajar con expertos y líderes que tienen conocimientos valiosos, servicios o una misión significativa que compartir, pero necesitan un equipo dedicado para ejecutar su estrategia digital.',
+    'who.1': 'Dueños de negocios con propósito', 'who.2': 'Emprendedores', 'who.3': 'Profesionales', 'who.4': 'Educadores', 'who.5': 'Expertos de la industria', 'who.6': 'Líderes de opinión', 'who.7': 'Organizaciones',
+    'who.box': 'Si valoras el storytelling auténtico, el marketing estratégico, una imagen profesional y el crecimiento a largo plazo, nos vamos a entender muy bien.',
+    'work.eyebrow': 'Nuestro trabajo', 'work.h2': 'Historias que <span class="serif">mueven a la gente.</span>',
+    'work.1k': 'Video corto', 'work.1': 'Reels y TikToks', 'work.2k': 'Marca', 'work.2': 'Marcas personales', 'work.3k': 'Campañas', 'work.3': 'Campañas digitales', 'work.4k': 'IA', 'work.4': 'Gemelos Digitales y contenido con IA',
+    'work.soon': '¿Quieres ver más? Pídenos ejemplos recientes en tu llamada de descubrimiento.',
+    'proc.eyebrow': 'Nuestro proceso', 'proc.h2': 'De la primera llamada al <span class="serif">crecimiento continuo.</span>',
+    'proc.1': 'Descubrimiento', 'proc.1t': 'Conocemos a fondo a ti, tu audiencia y tus objetivos.', 'proc.2': 'Estrategia', 'proc.2t': 'Un plan claro de plataformas, contenido y crecimiento.',
+    'proc.3': 'Configuración y optimización', 'proc.3t': 'Perfiles, sistemas y herramientas listos para rendir.', 'proc.4': 'Creación de contenido', 'proc.4t': 'Guiones, apoyo en grabación, edición y diseño.',
+    'proc.5': 'Lanzamiento', 'proc.5t': 'Tu nueva presencia sale al aire, con constancia.', 'proc.6': 'Gestión continua', 'proc.6t': 'Publicación, anuncios, reportes y mejora constante.',
+    'founder.role': 'Fundadora', 'founder.eyebrow': 'Conoce a la fundadora', 'founder.h2': 'Hola, soy Nuri. Mi nombre significa <span class="serif">Luz y Fuego.</span>',
+    'founder.p1': 'Nací y crecí en Santa Maria, California, y mi misión es aliarme con quienes dicen la verdad, educan, defienden causas e innovan para cambiar el mundo, con contenido que transforme la cultura y reduzca el sufrimiento innecesario que causa la ignorancia inocente.',
+    'founder.b1': 'Un liderazgo centrado en Dios', 'founder.b2': 'Decir la verdad con amor y empatía', 'founder.b3': 'Ayudar a las personas a comprender, un video a la vez',
+    'founder.p2': 'Si ya estás despertando a las personas, denunciando injusticias o educando a tu audiencia, pero necesitas un sistema para difundir tu mensaje a gran escala, eres el tipo de líder con quien trabajo.',
+    'founder.sign': 'Tú tienes la visión. <span class="serif">Yo dirijo la infraestructura para amplificarla.</span>',
+    'book.eyebrow': 'Agenda una llamada de descubrimiento', 'book.h2': 'Construyamos tu <span class="serif">Gemelo Digital.</span>',
+    'book.lead': 'Cuéntanos sobre tu marca y tus objetivos. Nuri revisa cada respuesta antes de la llamada, para que el tiempo juntos se enfoque en ti.',
+    'book.s1': 'Llena este breve formulario (unos 5 minutos)', 'book.s2': 'Revisamos tus respuestas y te contactamos para agendar la llamada', 'book.s3': 'Recibes una propuesta personalizada',
+    'form.saved': 'Progreso guardado', 'form.b1': 'Sobre ti', 'form.b1d': 'Para saber con quién hablamos y cómo contactarte.',
+    'form.name': 'Nombre completo', 'form.brand': 'Nombre del negocio o marca', 'form.email': 'Correo electrónico', 'form.phone': 'Número de teléfono',
+    'form.consent': 'Acepto recibir correos y mensajes de texto de Nuri Solutions sobre mi consulta, servicios y ofertas. Pueden aplicar tarifas de mensajes y datos. Puedo darme de baja en cualquier momento.',
+    'form.b2': 'Tu negocio', 'form.b2d': 'Dónde estás hoy en el mundo digital.', 'form.web': 'Sitio web del negocio', 'form.ifapp': 'Si aplica',
+    'form.industry': '¿En qué industria estás?', 'form.industryh': 'Ejemplo: bienes raíces, coaching, salud', 'form.socials': 'Perfiles de redes sociales', 'form.socialsh': 'Enlaces o @usuarios, si aplica',
+    'form.brandtype': '¿Quieres construir una marca personal, una marca de negocio o ambas?', 'form.bt1': 'Marca personal', 'form.bt2': 'Marca de negocio', 'form.bt3': 'Ambas',
+    'form.b3': 'Servicios', 'form.b3d': 'Elige todos los que te interesen.',
+    'form.s1': 'Estrategia de presencia digital', 'form.s2': 'Marca personal', 'form.s3': 'Gestión de redes sociales', 'form.s4': 'Marketing con video corto', 'form.s5': 'Publicidad pagada',
+    'form.s6': 'Optimización de sitio web', 'form.s7': 'Soluciones de IA y automatización', 'form.s8': 'CRM y sistemas de negocio', 'form.s9': 'Otro', 'form.sother': 'Otros servicios (opcional)',
+    'form.b4': 'Objetivos y retos', 'form.b4d': 'Esta es la parte más útil para preparar tu llamada.',
+    'form.goals': '¿Cuáles son tus principales objetivos de negocio o de marketing?', 'form.challenges': '¿Cuáles son tus mayores retos con tu presencia digital actual?',
+    'form.b5': 'Presupuesto y tiempos', 'form.b5d': 'Nos ayuda a recomendarte el paquete adecuado.', 'form.budget': '¿Cuál es tu presupuesto mensual estimado de marketing?', 'form.bu1': 'Menos de $3,000',
+    'form.start': '¿Cuándo te gustaría empezar?', 'form.st1': 'De inmediato', 'form.st2': 'En los próximos 30 días', 'form.st3': 'En 1 a 3 meses', 'form.st4': 'Solo estoy explorando opciones',
+    'form.notes': '¿Hay algo más que debamos saber sobre tu negocio o proyecto?',
+    'form.sendh': 'Envía tus respuestas', 'form.sendp': 'Nuri revisará tus respuestas y te contactará para agendar tu llamada de descubrimiento. También puedes descargar una copia en PDF.',
+    'form.err': 'Completa los campos marcados con * (nombre, negocio, correo y teléfono).', 'form.send': 'Enviar mis respuestas', 'form.pdf': 'Descargar PDF',
+    'footer.loc': 'Costa Central de California &middot; Clientes en todo Estados Unidos',
+    'done.h': '¡Gracias! Tus respuestas fueron enviadas.', 'done.p': 'Nuri las revisará y te contactará pronto para agendar tu llamada de descubrimiento. Revisa tu correo, te enviamos una confirmación.',
+    'done.pdf': 'Descargar mi PDF', 'done.close': 'Cerrar'
+  };
+  var MSG = {
+    en: { pct: '% complete', sending: 'Sending your answers...', sent: 'Sent!', fail: 'We could not send it right now. Please try again in a minute.', demo: 'Demo mode: the form is not connected yet, nothing was sent.', pdfFail: 'The PDF tool did not load. Check your connection and try again.', pdfTitle: 'DISCOVERY FORM', submitted: 'Submitted', yes: 'Yes', no: 'No' },
+    es: { pct: '% completado', sending: 'Enviando tus respuestas...', sent: '¡Enviado!', fail: 'No pudimos enviarlo en este momento. Intenta de nuevo en un minuto.', demo: 'Modo demo: el formulario aún no está conectado, no se envió nada.', pdfFail: 'La herramienta de PDF no cargó. Revisa tu conexión e intenta de nuevo.', pdfTitle: 'FORMULARIO DE DESCUBRIMIENTO', submitted: 'Enviado el', yes: 'Sí', no: 'No' }
+  };
+  var lang = 'en';
+  var EN = {};
+  document.querySelectorAll('[data-i18n]').forEach(function (el) { var k = el.getAttribute('data-i18n'); if (!(k in EN)) EN[k] = el.innerHTML; });
+  function setLang(l) {
+    lang = l === 'es' ? 'es' : 'en';
+    document.documentElement.lang = lang;
+    document.querySelectorAll('[data-i18n]').forEach(function (el) {
+      var k = el.getAttribute('data-i18n');
+      var v = lang === 'es' ? ES[k] : EN[k];
+      if (v != null) el.innerHTML = v;
+    });
+    document.querySelectorAll('.lang button').forEach(function (b) { b.classList.toggle('on', b.dataset.lang === lang); });
+    try { localStorage.setItem('nuri-lang', lang); } catch (e) {}
+    progress();
+  }
+  document.querySelectorAll('.lang button').forEach(function (b) { b.addEventListener('click', function () { setLang(b.dataset.lang); }); });
+
+  /* ---------------- page UI ---------------- */
+  var nav = document.getElementById('nav');
+  function onScroll() { nav.classList.toggle('solid', window.scrollY > 20); }
+  window.addEventListener('scroll', onScroll, { passive: true }); onScroll();
+  document.getElementById('yr').textContent = new Date().getFullYear();
+
+  document.querySelectorAll('.svc').forEach(function (card) {
+    card.addEventListener('click', function () {
+      var open = !card.classList.contains('open');
+      card.classList.toggle('open', open);
+      card.setAttribute('aria-expanded', open ? 'true' : 'false');
+    });
+  });
+
+  if ('IntersectionObserver' in window) {
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } });
+    }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+    document.querySelectorAll('.rv').forEach(function (el) { io.observe(el); });
+  } else { document.querySelectorAll('.rv').forEach(function (el) { el.classList.add('in'); }); }
+
+  /* ---------------- discovery form ---------------- */
+  var ENDPOINT = NURI_CONFIG.endpoint;
+  var KEY = NURI_CONFIG.storageKey;
+  var form = document.getElementById('discovery');
+  var status = document.getElementById('status');
+  var savedEl = document.getElementById('saved');
+  var leadId = null, leadSentSig = '', leadTimer = null, savedTimer = null;
+
+  function newId() { return 'L' + Date.now().toString(36).toUpperCase() + Math.random().toString(36).slice(2, 6).toUpperCase(); }
+  function val(id) { var el = document.getElementById(id); return el ? (el.value || '').trim() : ''; }
+  function emailOk(v) { return /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(v); }
+  function phoneOk(v) { return v.replace(/\D/g, '').length >= 7; }
+
+  // single-choice chip groups
+  form.querySelectorAll('.chips[data-single]').forEach(function (g) {
+    g.addEventListener('change', function (e) {
+      if (e.target.checked) g.querySelectorAll('input').forEach(function (i) { if (i !== e.target) i.checked = false; });
+    });
+  });
+
+  // collect answers. mode 'data' = English labels/values (for Nuri), 'view' = current language (for client PDF)
+  function sections(mode) {
+    var out = [];
+    form.querySelectorAll('section.block').forEach(function (sec) {
+      var title = mode === 'data' ? (EN[sec.querySelector('h3').getAttribute('data-i18n')] || '').replace(/&amp;/g, '&') : sec.querySelector('h3').textContent.trim();
+      var items = [];
+      sec.querySelectorAll('.field, .consent').forEach(function (f) {
+        var el = f.querySelector('input[name], textarea[name]');
+        var group = f.querySelector('.chips[data-name]');
+        if (group) {
+          var checked = Array.prototype.filter.call(group.querySelectorAll('input'), function (i) { return i.checked; });
+          if (!checked.length) return;
+          var lbl = mode === 'data' ? group.dataset.label : (f.querySelector('label.q') || {}).textContent;
+          var v = checked.map(function (i) { return mode === 'data' ? i.value : i.nextElementSibling.textContent.trim(); }).join(', ');
+          items.push([String(lbl).trim(), v]);
+        } else if (el && el.type === 'checkbox') {
+          if (mode === 'data') items.push([el.dataset.label, el.checked ? 'Yes' : 'No']);
+          else items.push([lang === 'es' ? 'Autorización de marketing' : 'Marketing consent', el.checked ? MSG[lang].yes : MSG[lang].no]);
+        } else if (el) {
+          var v2 = (el.value || '').trim(); if (!v2) return;
+          var l2 = mode === 'data' ? el.dataset.label : f.querySelector('label.q').textContent.replace('*', '').trim();
+          items.push([l2, v2]);
+        }
+      });
+      if (items.length) out.push({ title: title, items: items });
+    });
+    return out;
+  }
+  function asText() {
+    return sections('data').map(function (s) {
+      return s.title.toUpperCase() + '\n' + s.items.map(function (i) { return i[0] + ': ' + i[1]; }).join('\n');
+    }).join('\n\n');
+  }
+  function fields() {
+    var f = {};
+    form.querySelectorAll('input[name], textarea[name]').forEach(function (el) {
+      if (el.name === 'company_site') return;
+      f[el.name] = el.type === 'checkbox' ? el.checked : (el.value || '').trim();
+    });
+    form.querySelectorAll('.chips[data-name]').forEach(function (g) {
+      f[g.dataset.name] = Array.prototype.filter.call(g.querySelectorAll('input'), function (i) { return i.checked; }).map(function (i) { return i.value; }).join(', ');
+    });
+    return f;
+  }
+
+  // autosave (local)
+  function state() {
+    var s = { id: leadId, sig: leadSentSig, f: {}, c: {} };
+    form.querySelectorAll('input[name], textarea[name]').forEach(function (el) { s.f[el.id] = el.type === 'checkbox' ? el.checked : el.value; });
+    form.querySelectorAll('.chips[data-name]').forEach(function (g) { s.c[g.dataset.name] = Array.prototype.map.call(g.querySelectorAll('input'), function (i) { return i.checked; }); });
+    return s;
+  }
+  function save() {
+    try { localStorage.setItem(KEY, JSON.stringify(state())); } catch (e) { return; }
+    savedEl.classList.add('show'); clearTimeout(savedTimer); savedTimer = setTimeout(function () { savedEl.classList.remove('show'); }, 1400);
+  }
+  function load() {
+    var raw = null; try { raw = localStorage.getItem(KEY); } catch (e) {}
+    if (!raw) return;
+    try {
+      var s = JSON.parse(raw);
+      leadId = s.id || null; leadSentSig = s.sig || '';
+      Object.keys(s.f || {}).forEach(function (id) { var el = document.getElementById(id); if (!el || id === 'company_site') return; if (el.type === 'checkbox') el.checked = !!s.f[id]; else el.value = s.f[id]; });
+      form.querySelectorAll('.chips[data-name]').forEach(function (g) { var arr = (s.c || {})[g.dataset.name]; if (arr) g.querySelectorAll('input').forEach(function (i, ii) { i.checked = !!arr[ii]; }); });
+    } catch (e) {}
+  }
+  function clearSaved() { try { localStorage.removeItem(KEY); } catch (e) {} }
+
+  function progress() {
+    var total = 0, filled = 0;
+    form.querySelectorAll('section.block').forEach(function (sec) {
+      var t = 0, f = 0;
+      sec.querySelectorAll('input[name]:not([type=checkbox]), textarea[name]').forEach(function (el) { if (el.name === 'company_site' || el.name === 'services_other') return; t++; if ((el.value || '').trim()) f++; });
+      sec.querySelectorAll('.chips[data-name]').forEach(function (g) { t++; if (g.querySelector('input:checked')) f++; });
+      total += t; filled += f;
+      sec.classList.toggle('done', t > 0 && f === t);
+    });
+    var pct = total ? Math.round(filled / total * 100) : 0;
+    document.getElementById('bar').style.width = pct + '%';
+    document.getElementById('ptxt').textContent = pct + MSG[lang].pct;
+  }
+
+  function post(payload, keepalive) {
+    return fetch(ENDPOINT, { method: 'POST', headers: { 'Content-Type': 'text/plain;charset=utf-8' }, body: JSON.stringify(payload), keepalive: !!keepalive });
+  }
+
+  // partial lead: saved as soon as name + email + phone are valid (and again if they change)
+  function contactReady() { return val('full_name') && emailOk(val('email')) && phoneOk(val('phone')); }
+  function sendLead(keepalive) {
+    if (!ENDPOINT || !contactReady() || val('company_site')) return;
+    var f = fields();
+    var sig = [f.full_name, f.brand_name, f.email, f.phone, f.marketing_consent].join('|');
+    if (sig === leadSentSig) return;
+    if (!leadId) leadId = newId();
+    leadSentSig = sig; save();
+    post({ action: 'lead', leadId: leadId, lang: lang, page: location.href, fields: f }, keepalive)
+      .catch(function () { leadSentSig = ''; });
+  }
+  function queueLead() { clearTimeout(leadTimer); leadTimer = setTimeout(function () { sendLead(false); }, 1200); }
+  document.addEventListener('visibilitychange', function () { if (document.visibilityState === 'hidden') sendLead(true); });
+
+  function valid() {
+    var ok = true;
+    form.querySelectorAll('[required]').forEach(function (el) {
+      var v = (el.value || '').trim();
+      var bad = !v || (el.type === 'email' && !emailOk(v)) || (el.type === 'tel' && !phoneOk(v));
+      el.classList.toggle('invalid', bad); if (bad) ok = false;
+    });
+    document.getElementById('err').style.display = ok ? 'none' : 'block';
+    if (!ok) { var first = form.querySelector('.invalid'); if (first) { first.scrollIntoView({ behavior: 'smooth', block: 'center' }); setTimeout(function () { first.focus({ preventScroll: true }); }, 350); } }
+    return ok;
+  }
+
+  /* PDF (client copy, in the language on screen) */
+  function makePdf() {
+    if (!window.jspdf) { status.textContent = MSG[lang].pdfFail; return; }
+    var doc = new window.jspdf.jsPDF({ unit: 'mm', format: 'letter' });
+    var W = 215.9, H = 279.4, M = 18, y = 0, maxW = W - M * 2;
+    var brand = val('brand_name') || val('full_name') || 'Nuri Solutions';
+    doc.setFillColor(14, 14, 17); doc.rect(0, 0, W, 40, 'F');
+    doc.setFillColor(251, 70, 152); doc.rect(0, 40, W, 1.4, 'F');
+    doc.setTextColor(251, 70, 152); doc.setFont('helvetica', 'bold'); doc.setFontSize(8.5);
+    doc.text('NURI SOLUTIONS  |  ' + MSG[lang].pdfTitle, M, 14);
+    doc.setTextColor(255, 255, 255); doc.setFontSize(20); doc.text(doc.splitTextToSize(brand, maxW)[0], M, 26);
+    doc.setFont('helvetica', 'normal'); doc.setFontSize(9); doc.setTextColor(200, 198, 205);
+    doc.text(MSG[lang].submitted + ' ' + new Date().toLocaleDateString(lang === 'es' ? 'es-US' : 'en-US', { year: 'numeric', month: 'long', day: 'numeric' }), M, 33);
+    y = 54;
+    function ensure(h) { if (y + h > H - 18) { doc.addPage(); y = 20; } }
+    sections('view').forEach(function (s, si) {
+      ensure(16);
+      doc.setFillColor(247, 245, 241); doc.roundedRect(M, y - 5.5, maxW, 9.5, 2, 2, 'F');
+      doc.setTextColor(14, 14, 17); doc.setFont('helvetica', 'bold'); doc.setFontSize(11.5);
+      doc.text((si + 1) + '.  ' + s.title, M + 3, y + 1); y += 11;
+      s.items.forEach(function (it) {
+        var lines = doc.splitTextToSize(String(it[1]), maxW);
+        ensure(6 + Math.min(lines.length, 3) * 5);
+        doc.setFont('helvetica', 'bold'); doc.setFontSize(8.5); doc.setTextColor(222, 42, 124);
+        doc.splitTextToSize(String(it[0]).toUpperCase(), maxW).forEach(function (ln) { doc.text(ln, M, y); y += 4.3; });
+        y += 0.4;
+        doc.setFont('helvetica', 'normal'); doc.setFontSize(10.5); doc.setTextColor(40, 40, 46);
+        lines.forEach(function (ln) { ensure(5.2); doc.text(ln, M, y); y += 5.2; });
+        y += 2.8;
+      });
+      y += 3;
+    });
+    var pages = doc.getNumberOfPages();
+    for (var i = 1; i <= pages; i++) {
+      doc.setPage(i); doc.setFont('helvetica', 'normal'); doc.setFontSize(8); doc.setTextColor(140, 138, 145);
+      doc.text('Nuri Solutions  |  nurisolutions.si', M, H - 9);
+      doc.text(i + ' / ' + pages, W - M, H - 9, { align: 'right' });
+    }
+    doc.save('Nuri Solutions - ' + brand.replace(/[\\\/:*?"<>|#]/g, '-') + '.pdf');
+  }
+
+  function showDone() { document.getElementById('done').classList.add('show'); document.getElementById('donePdf').focus(); }
+  document.getElementById('donePdf').addEventListener('click', makePdf);
+  document.getElementById('doneClose').addEventListener('click', function () { document.getElementById('done').classList.remove('show'); });
+  document.getElementById('pdfBtn').addEventListener('click', function () { if (valid()) makePdf(); });
+
+  var sendBtn = document.getElementById('sendBtn');
+  sendBtn.addEventListener('click', function () {
+    if (!valid()) return;
+    status.textContent = '';
+    if (val('company_site')) { showDone(); return; } // bot
+    if (!ENDPOINT) { status.textContent = MSG[lang].demo; showDone(); return; }
+    if (!leadId) leadId = newId();
+    sendBtn.disabled = true; status.textContent = MSG[lang].sending;
+    post({ action: 'discovery', leadId: leadId, lang: lang, page: location.href, fields: fields(), text: asText() })
+      .then(function (r) { return r.json(); })
+      .then(function (res) {
+        sendBtn.disabled = false;
+        if (!res || !res.ok) throw new Error(res && res.error);
+        status.textContent = MSG[lang].sent;
+        clearSaved(); leadSentSig = ''; leadId = null;
+        showDone();
+      })
+      .catch(function () { sendBtn.disabled = false; status.textContent = MSG[lang].fail; });
+  });
+
+  form.addEventListener('input', function (e) {
+    if (e.target.classList) e.target.classList.remove('invalid');
+    save(); progress();
+    if (['full_name', 'brand_name', 'email', 'phone'].indexOf(e.target.id) > -1) queueLead();
+  });
+  form.addEventListener('change', function (e) { save(); progress(); if (e.target.id === 'consent' || e.target.id === 'email' || e.target.id === 'phone') queueLead(); });
+
+  /* init */
+  var startLang = 'en';
+  try { startLang = localStorage.getItem('nuri-lang') || ((navigator.language || '').toLowerCase().indexOf('es') === 0 ? 'es' : 'en'); } catch (e) {}
+  if (/[?&]lang=es/.test(location.search)) startLang = 'es';
+  if (/[?&]lang=en/.test(location.search)) startLang = 'en';
+  load();
+  setLang(startLang);
+})();
+</script>
+</body>
+</html>
