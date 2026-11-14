@@ -1007,10 +1007,8 @@ var NURI_CONFIG = {
   form.addEventListener('change', function (e) { save(); progress(); if (e.target.id === 'consent' || e.target.id === 'email' || e.target.id === 'phone') queueLead(); });
 
   /* init */
-  var startLang = 'en';
-  try { startLang = localStorage.getItem('nuri-lang') || ((navigator.language || '').toLowerCase().indexOf('es') === 0 ? 'es' : 'en'); } catch (e) {}
-  if (/[?&]lang=es/.test(location.search)) startLang = 'es';
-  if (/[?&]lang=en/.test(location.search)) startLang = 'en';
+  // Always opens in English. Spanish only with the ES button or a link ending in ?lang=es
+  var startLang = /[?&]lang=es/.test(location.search) ? 'es' : 'en';
   load();
   setLang(startLang);
 })();
