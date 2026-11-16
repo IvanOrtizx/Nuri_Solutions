@@ -68,7 +68,7 @@ var SHEETS = {
     name: 'Discovery forms',
     headers: ['Submitted', 'Lead ID', 'Full name', 'Business / brand', 'Email', 'Phone', 'Website', 'Social media profiles',
       'Industry', 'Brand type', 'Services of interest', 'Other services', 'Primary goals', 'Biggest challenges',
-      'Monthly budget', 'Start', 'Anything else', 'Marketing consent', 'Language', 'PDF']
+      'Monthly budget', 'Start', 'Anything else', 'Marketing consent', 'Language', 'PDF', 'Truth to awaken people to']
   },
   ONBOARDING: { name: 'Onboarding', headers: null }, // built from ONB_FIELDS below
   SESSIONS: {
@@ -207,7 +207,7 @@ function handleDiscovery_(data) {
   var dsh = ss.getSheetByName(SHEETS.DISCOVERY.name);
   dsh.appendRow([now, data.leadId, f.full_name, f.brand_name, f.email, f.phone, f.website, f.socials, f.industry,
     f.brand_type, f.services, f.services_other, f.goals, f.challenges, f.budget, f.start, f.notes,
-    f.marketing_consent ? 'Yes' : 'No', (data.lang || 'en').toUpperCase(), pdfFile.getUrl()].map(clean_));
+    f.marketing_consent ? 'Yes' : 'No', (data.lang || 'en').toUpperCase(), pdfFile.getUrl(), f.truth].map(clean_));
 
   upsertLead_(data.leadId, {
     'Full name': f.full_name, 'Business / brand': f.brand_name, 'Email': f.email, 'Phone': f.phone,
@@ -322,7 +322,7 @@ var LABELS = [
   ['About you', [['Full name', 'full_name'], ['Business / brand', 'brand_name'], ['Email', 'email'], ['Phone', 'phone'], ['Marketing consent', 'marketing_consent']]],
   ['Your business', [['Website', 'website'], ['Industry', 'industry'], ['Social media profiles', 'socials'], ['Brand type', 'brand_type']]],
   ['Services', [['Services of interest', 'services'], ['Other services', 'services_other']]],
-  ['Goals & challenges', [['Primary goals', 'goals'], ['Biggest challenges', 'challenges']]],
+  ['Mission, goals & challenges', [['Truth to awaken people to', 'truth'], ['Primary goals', 'goals'], ['Biggest challenges', 'challenges']]],
   ['Budget & timing', [['Monthly budget', 'budget'], ['Start', 'start'], ['Anything else', 'notes']]]
 ];
 
